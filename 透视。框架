@@ -226,7 +226,7 @@ getgenv().ExunysDeveloperESP = {
 			Color = Color3fromRGB(255, 255, 255),
 
 			Outline = true,
-			OutlineColor = Color3fromRGB(0, 0, 0)
+			OutlineColor = Color3fromRGB(255, 255, 255)
 		},
 
 		HeadDot = {
@@ -240,7 +240,7 @@ getgenv().ExunysDeveloperESP = {
 			NumSides = 30,
 			Filled = false,
 
-			OutlineColor = Color3fromRGB(0, 0, 0),
+			OutlineColor = Color3fromRGB(255, 255, 255),
 			Outline = true
 		},
 
@@ -268,7 +268,7 @@ getgenv().ExunysDeveloperESP = {
 			Thickness = 0.5,
 			Transparency = 0.5,
 
-			OutlineColor = Color3fromRGB(0, 0, 0),
+			OutlineColor = Color3fromRGB(255, 255, 255),
 			Outline = true
 		},
 
@@ -303,10 +303,10 @@ getgenv().ExunysDeveloperESP = {
 			PulsingBounds = {4, 8}, -- {...}[1] => GapSize Min; {...}[2] => GapSize Max
 
 			Color = Color3fromRGB(0, 255, 0),
-			Thickness = 1,
-			Transparency = 1,
+			Thickness = 0.5,
+			Transparency = 0.5,
 
-			OutlineColor = Color3fromRGB(0, 0, 0),
+			OutlineColor = Color3fromRGB(255, 255, 255),
 			Outline = true,
 
 			CenterDot = {
@@ -317,12 +317,12 @@ getgenv().ExunysDeveloperESP = {
 				Radius = 2,
 
 				Color = Color3fromRGB(0, 255, 0),
-				Transparency = 1,
-				Thickness = 1,
+				Transparency = 0.5,
+				Thickness = 0.5,
 				NumSides = 60,
 				Filled = false,
 
-				OutlineColor = Color3fromRGB(0, 0, 0),
+				OutlineColor = Color3fromRGB(255, 255, 255),
 				Outline = true
 			}
 		}
