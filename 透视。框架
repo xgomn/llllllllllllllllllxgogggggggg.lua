@@ -22,7 +22,7 @@ end
 --// Custom Drawing Library
 
 if not Drawing or not Drawing.new or not Drawing.Fonts then
-	loadstring(game.HttpGet(game, "https://pastebin.com/raw/huyiRsK0"))()
+	loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/xgomn/eeeeeeeeeeeppppppppppppssassssssssss/refs/heads/main/%E9%99%84%E5%B1%9E%E4%BA%8Eui"))()
 
 	repeat
 		wait(0)
