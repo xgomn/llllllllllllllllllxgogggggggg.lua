@@ -201,11 +201,11 @@ getgenv().ExunysDeveloperESP = {
 			Offset = 10,
 
 			Color = Color3fromRGB(255, 255, 255),
-			Transparency = 1,
+			Transparency = 0.5,
 			Size = 14,
 			Font = DrawingFonts.Plex, -- UI, System, Plex, Monospace
 
-			OutlineColor = Color3fromRGB(0, 0, 0),
+			OutlineColor = Color3fromRGB(255, 255, 255),
 			Outline = true,
 
 			DisplayDistance = true,
@@ -254,7 +254,7 @@ getgenv().ExunysDeveloperESP = {
 			Thickness = 0.5,
 			Filled = false,
 
-			OutlineColor = Color3fromRGB(0, 0, 0),
+			OutlineColor = Color3fromRGB(255, 255, 255),
 			Outline = true
 		},
 
