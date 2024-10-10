@@ -36,7 +36,7 @@ local function createBoxEsp(v)
     DistanceTag.OutlineColor = Color3.new(0, 0, 0)
 
     local Tracer = Drawing.new("Line")
-    Tracer.Visible = (0.5, 0)
+    Tracer.Visible = false
     Tracer.Color = v.TeamColor.Color
     Tracer.Thickness = 2
 
