@@ -3,7 +3,7 @@ local camera = game:GetService("Workspace").CurrentCamera
 local CurrentCamera = workspace.CurrentCamera
 local worldToViewportPoint = CurrentCamera.worldToViewportPoint
 
-local HeadOff = Vector3.new(0, 5, 0)
+local HeadOff = Vector3.new(0.5, 0)
 local LegOff = Vector3.new(0, 3, 0)
 
 local function createBoxEsp(v)
@@ -36,7 +36,7 @@ local function createBoxEsp(v)
     DistanceTag.OutlineColor = Color3.new(0, 0, 0)
 
     local Tracer = Drawing.new("Line")
-    Tracer.Visible = false
+    Tracer.Visible = (0.5, 0)
     Tracer.Color = v.TeamColor.Color
     Tracer.Thickness = 2
 
