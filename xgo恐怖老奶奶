@@ -253,8 +253,6 @@ tab.newButton("透视SlendrinaMother", "可以透视到诡异的母亲", functio
         end
     end)
 end)
-tab.newButton("透视玩家", "透视所有玩家", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP"))() end)
 tab.newButton("透视物品", "可以看见所有物品", function()
     local lighting = game.Lighting
     local presets = {"Preset1", "Preset2", "Preset3", "Preset4", "Preset5"}
@@ -608,8 +606,6 @@ tab.newButton("透视爷爷", "可以看见帅气的爷爷", function()
         end
     end)
 end)
-tab.newButton("透视玩家", "透视所有玩家", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP"))() end)
 
 tab.newButton("物品", "可以看见所有的物品", function()
     local lighting = game.Lighting
