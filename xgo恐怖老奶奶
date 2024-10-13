@@ -13,7 +13,7 @@ if placeId == chapter1PlaceId then
     })
     wait(2)
 
-local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/goto/refs/heads/main/xxxxgo"))()
+local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
 local window = DrRayLibrary:Load("xgo可爱的奶奶:多人游戏第1章", "xgo")
 
 local HighlightLib = {}
