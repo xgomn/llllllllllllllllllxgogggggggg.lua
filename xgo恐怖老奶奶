@@ -503,7 +503,7 @@ HighlightLib.HighlightPart = function(name, fillColor, outlineColor)
     HighlightPart(name, fillColor, outlineColor)
 end
 
-local tab = DrRayLibrary.newTab("Chapter 2", "ImageIdHere")
+local tab = DrRayLibrary.newTab("第2章", "ImageIdHere")
 
 tab.newLabel("项目")
 
@@ -876,7 +876,7 @@ HighlightLib.HighlightPart = function(name, fillColor, outlineColor)
     HighlightPart(name, fillColor, outlineColor)
 end
 
-local tab = DrRayLibrary.newTab("Chapter 3", "ImageIdHere")
+local tab = DrRayLibrary.newTab("第3章", "ImageIdHere")
 
 tab.newLabel("项目")
 
