@@ -13,7 +13,7 @@ if placeId == chapter1PlaceId then
     })
     wait(2)
 
-local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
+local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/goto/refs/heads/main/xxxxgo"))()
 local window = DrRayLibrary:Load("xgo可爱的奶奶:多人游戏第1章", "xgo")
 
 local HighlightLib = {}
@@ -391,8 +391,8 @@ elseif placeId == chapter2PlaceId then
     })
     wait(2)
 
-local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
-local window = DrRayLibrary:Load("xgo可爱的奶奶/多人游戏", "xgo")
+local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/goto/refs/heads/main/xxxxgo"))()
+local window = DrRayLibrary:Load("xgo可爱的奶奶/多人游戏第2章", "xgo")
 
 local HighlightLib = {}
 
@@ -764,7 +764,7 @@ elseif placeId == chapter3PlaceId then
     })
     wait(2)
 
-local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
+local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/goto/refs/heads/main/xxxxgo"))()
 local window = DrRayLibrary:Load("xgo可爱的老奶奶第3章", "xgo")
 
 local HighlightLib = {}
