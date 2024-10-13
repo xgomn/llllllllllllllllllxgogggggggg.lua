@@ -244,7 +244,7 @@ tab.newButton("透视奶奶", "可以透视到可爱的奶奶", function()
         end
     end)
 end)
-tab.newButton("透视SlendrinaMother", "可以透视到诡异的母亲", function()
+tab.newButton("透视SlendrinaMother", "可以透视像蜘蛛一样的SlendrinaMother", function()
     HighlightLib.HighlightModel("SlendrinaMother", Color3.fromRGB(255, 0, 0), Color3.fromRGB(255, 0, 0))
 
     workspace.DescendantAdded:Connect(function(descendant)
