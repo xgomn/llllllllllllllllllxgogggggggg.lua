@@ -142,18 +142,18 @@ about:Toggle("无限耐力","Toggle",false,function(val)
          end
     end
 )
-about:Toggle("killaura","Toggle",false,function(val)
+about:Toggle("killaura","Toggle",false,function()
         _G.drawlines = true
 	drawline_unchecked.Visible = false
 	drawline_checked.Visible = true
   end)
-about:Toggle("killaura","Toggle",false,function(val)
+about:Toggle("killaura","Toggle",false,function()
         _G.enabled = false
 	killaura_unchecked.Visible = true
 	killaura_checked.Visible = false
     end
 )
-about:Toggle("antiparry","Toggle",false,function(val)
+about:Toggle("antiparry","Toggle",false,function()
         _G.antiparry = true
 	antiparry_unchecked.Visible = false
 	antiparry_checked.Visible = true
@@ -172,13 +172,13 @@ about:Toggle("没有破折号冷却","Toggle",false,function(val)
         end
     end
 )
-about:Toggle("没有公用事业损坏","Toggle",false,function(val)
+about:Toggle("没有公用事业损坏","Toggle",false,function()
         _G.stompaura = true
 	stompaura_unchecked.Visible = false
 	stompaura_checked.Visible = true
     end
 )
-about:Toggle("自动生成","Toggle",false,function(val)
+about:Toggle("自动生成","Toggle",false,function()
         _G.boostws = false
 	velocity_unchecked.Visible = true
 	velocity_checked.Visible = false
@@ -222,17 +222,17 @@ about:Toggle("自动跳","Toggle",false,function()
 	jump_checked.Visible = true
     end
 )
-about:Toggle("自动复活","Toggle",false,function(val)
+about:Toggle("自动复活","Toggle",false,function()
         _G.autospawn = false
 	spawn_unchecked.Visible = true
 	spawn_checked.Visible = false
     end
 )
-about:Toggle("自动装备","Toggle",false,function(val)
+about:Toggle("自动装备","Toggle",false,function()
         _G.autoequip = true
 	equip_unchecked.Visible = false
 	equip_checked.Visible = true
-)
+end)
 about:Toggle("杀了","Toggle",false,function()
         _G.killsay = false
 	killsay_unchecked.Visible = true
@@ -240,7 +240,7 @@ about:Toggle("杀了","Toggle",false,function()
 end)
 
 
-about:Toggle("隐藏名称","Toggle",false,function(val)
+about:Toggle("隐藏名称","Toggle",false,function()
         _G.autohit = true
 	autohit_unchecked.Visible = false
 	autohit_checked.Visible = true
@@ -255,11 +255,6 @@ about:Toggle("飞行","Toggle",false,function(val)
         end
     end
 )
-
-
-
-
-
 
 about:Button( "飞钥匙布",function(val)
         flying = not flying
