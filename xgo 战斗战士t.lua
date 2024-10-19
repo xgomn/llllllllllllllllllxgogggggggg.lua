@@ -500,7 +500,7 @@ about:Toggle("击中声音","Toggle",false,function(val)
 local UITab2 = win:Tab("『ESP』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)
-about:ColorPicker("ESP颜色",Color3.new(255, 0, 0),function(val)
+about:Button("ESP颜色",Color3.new(255, 0, 0),function(val)
         getgenv().TracerColor = val
         bruh.FillColor = TracerColor
     end
