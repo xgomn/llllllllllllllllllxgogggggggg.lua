@@ -355,27 +355,23 @@ pcall(function()
         wait()
     end
 end)
-local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/neilonmacedo153/refs/heads/main/xgoui.txt"))();        
-local window = ui.new("frkfx#7420", Players.LocalPlayer.UserId, "ALPHA")
-local main = window:Category("Rage", "rbxassetid://7733965386")
-local player = window:Category("Player", "rbxassetid://7743875962")
-local Combat = window:Category("Combat", "rbxassetid://7743878358")
-local misc = window:Category("Misc", "rbxassetid://7734042071")
-local ESP = window:Category("ESP", "rbxassetid://7733774602")
+local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/neilonmacedo153/refs/heads/main/xgoui.txt"))();    
+local win = ui:new("goto战斗战士")
 
-local mainMain = main:Button("Rage", "rbxassetid://7743875962")
-local mainSection = mainMain:Section("Toggles", "Left")
-local playerMain = player:Button("Player", "rbxassetid://7743875962")
-local playerSection = playerMain:Section("Player", "Left")
-local CombatMain = Combat:Button("Combat", "rbxassetid://7743875962")
-local CombatKillauraSection = CombatMain:Section("Kill Aura", "Left")
-local CombatSilentaimSection = CombatMain:Section("Silent Aim", "Right")
-local miscMain = misc:Button("Misc", "rbxassetid://7743875962")
-local miscSection = miscMain:Section("BROKEN", "Left")
-local ESPMain = ESP:Button("ESP", "rbxassetid://7743875962")
-local ESPSection = ESPMain:Section("ESP", "Left")
+local UITab1 = win:Tab("『信息』",'6035145364')
 
-mainSection:Button({
+local about = UITab1:section("『信息』",true)
+
+
+about:Label("作者：goto_O")
+about:Label("goto战斗战士")
+about:Label("你的注入器:"..identifyexecutor())
+about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
+
+local UITab2 = win:Tab("『愤怒』",'16060333448')
+
+local about = UITab2:section("『xxxxxxxgo』",true)   
+ mainSection:Button({
     Title = "Emotes",
     ButtonName = "Unlock",
     },
@@ -601,6 +597,24 @@ mainSection:Toggle({
         end
     end
 )
+local main = window:Category("", "rbxassetid://7733965386")
+local player = window:Category("Player", "rbxassetid://7743875962")
+local Combat = window:Category("Combat", "rbxassetid://7743878358")
+local misc = window:Category("Misc", "rbxassetid://7734042071")
+local ESP = window:Category("ESP", "rbxassetid://7733774602")
+
+local mainMain = main:Button("Rage", "rbxassetid://7743875962")
+local mainSection = mainMain:Section("Toggles", "Left")
+local playerMain = player:Button("Player", "rbxassetid://7743875962")
+local playerSection = playerMain:Section("Player", "Left")
+local CombatMain = Combat:Button("Combat", "rbxassetid://7743875962")
+local CombatKillauraSection = CombatMain:Section("Kill Aura", "Left")
+local CombatSilentaimSection = CombatMain:Section("Silent Aim", "Right")
+local miscMain = misc:Button("Misc", "rbxassetid://7743875962")
+local miscSection = miscMain:Section("BROKEN", "Left")
+local ESPMain = ESP:Button("ESP", "rbxassetid://7743875962")
+local ESPSection = ESPMain:Section("ESP", "Left")
+
 
 playerSection:Toggle({
     Title = "enabled",
