@@ -1,6 +1,4 @@
 
-
-
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/neilonmacedo153/refs/heads/main/xgoui.txt"))();    
 local win = ui:new("goto战斗战士")
 
@@ -22,26 +20,14 @@ local about = UITab2:section("『xxxxxxxgo』",true)
 	follow_unchecked.Visible = false
 	follow_checked.Visible = true
     end
-    _G.followclosest = false
-	follow_unchecked.Visible = true
-	follow_checked.Visible = false
-    end
 )
 about:Toggle("自动跳","Toggle",false,function()
         _G.autojump = true
 	jump_unchecked.Visible = false
 	jump_checked.Visible = true
     end
-    _G.autojump = false
-	jump_unchecked.Visible = true
-	jump_checked.Visible = false
-    end
 )
 about:Toggle("自动复活","Toggle",false,function()
-        _G.autospawn = false
-	spawn_unchecked.Visible = true
-	spawn_checked.Visible = false
-    end
     _G.autospawn = true
 	spawn_unchecked.Visible = false
 	spawn_checked.Visible = true
@@ -49,10 +35,6 @@ about:Toggle("自动复活","Toggle",false,function()
 )
 
 about:Toggle("杀死光环","Toggle",false,function()
-        _G.killsay = false
-	killsay_unchecked.Visible = true
-	killsay_checked.Visible = false
-end
      _G.killsay = true
 	killsay_unchecked.Visible = false
 	killsay_checked.Visible = true
@@ -61,10 +43,6 @@ about:Toggle("自动击中","Toggle",false,function()
         _G.autohit = true
 	autohit_unchecked.Visible = false
 	autohit_checked.Visible = true
-    end
-    _G.autohit = false
-	autohit_unchecked.Visible = true
-	autohit_checked.Visible = false
     end
 )
 about:Toggle("无限招架","Toggle",false,function(val)
@@ -100,10 +78,6 @@ about:Toggle("无限耐力","Toggle",false,function(val)
 )
 
 about:Toggle("启用","Toggle",false,function()
-        _G.enabled = false
-	killaura_unchecked.Visible = true
-	killaura_checked.Visible = false
-    end
     _G.enabled = true
 	killaura_unchecked.Visible = false
 	killaura_checked.Visible = true
@@ -113,10 +87,6 @@ about:Toggle("反招架","Toggle",false,function()
         _G.antiparry = true
 	antiparry_unchecked.Visible = false
 	antiparry_checked.Visible = true
-    end
-    _G.antiparry = false
-	antiparry_unchecked.Visible = true
-	antiparry_checked.Visible = false
     end)
 about:Toggle("没有破折号冷却","Toggle",false,function(val)
         for i,v2 in pairs(getgc(true)) do
@@ -136,16 +106,8 @@ about:Toggle("斯托拉光环","Toggle",false,function()
 	stompaura_unchecked.Visible = false
 	stompaura_checked.Visible = true
     end
-    _G.stompaura = false
-	stompaura_unchecked.Visible = true
-	stompaura_checked.Visible = false
-    end
 )
 about:Toggle("嘘它","Toggle",false,function()
-        _G.boostws = false
-	velocity_unchecked.Visible = true
-	velocity_checked.Visible = false
-    end
     _G.boostws = true
 	velocity_unchecked.Visible = false
 	velocity_checked.Visible = true
@@ -299,9 +261,6 @@ about:Toggle("自动装备","Toggle",false,function()
 	equip_unchecked.Visible = false
 	equip_checked.Visible = true
 end
-    _G.autoequip = false
-	equip_unchecked.Visible = true
-	equip_checked.Visible = false
 )
 
 -- reach here
@@ -550,9 +509,6 @@ about:Toggle("画线","Toggle",false,function()
 	drawline_unchecked.Visible = false
 	drawline_checked.Visible = true
   end
-     _G.drawlines = false
-	drawline_unchecked.Visible = true
-	drawline_checked.Visible = false
   )
 about:Button("人物射线",function()   
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xgomn/eeeeeeeeeeeppppppppppppssassssssssss/refs/heads/main/%E9%80%8F%E8%A7%86%E3%80%82%E6%A1%86%E6%9E%B6"))()ExunysDeveloperESP()     end)
@@ -563,7 +519,4 @@ about:Toggle("透视玩家名字","Toggle",false,function()
 	esp_unchecked.Visible = false
 	esp_checked.Visible = true
 end
-   _G.esp = false
-	esp_unchecked.Visible = true
-	esp_checked.Visible = false
 )
