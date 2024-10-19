@@ -371,7 +371,7 @@ about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
 local UITab2 = win:Tab("『愤怒』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)   
- about:Button( "表情", "Unlock",function(v)
+ about:Button( "表情",function(v)
         for i,v in pairs(getgc(true)) do
             if typeof(v) == "table" and rawget(v, "gamepassIdRequired") then
                 if v.gamepassIdRequired ==  "danceEmotes" then
@@ -385,7 +385,7 @@ local about = UITab2:section("『xxxxxxxgo』",true)
         end
     end
 )
-about:Button( "汽车园林","Enable",function(v)
+about:Button( "汽车园林",function(v)
 
 	local lp = game.Players.LocalPlayer
 
