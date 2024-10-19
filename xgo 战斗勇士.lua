@@ -18,6 +18,48 @@ game.Workspace.Camera.FieldOfView = settings.CamFov
 end
 end)
 
+-- mod check
+
+local function ModCheck(User)
+if User:IsFriendsWith(1259667248) then
+return User
+end
+if User:IsFriendsWith(46574148) then
+return User
+end
+if User.UserId == 223912614 then
+return User
+end
+if User:IsFriendsWith(31967243) then
+return User
+end
+if User.UserId == 551487640 then
+return User
+end
+if User.UserId == 650817947 then
+return User
+end
+if User:IsFriendsWith(2013561731) then
+return User
+end
+if User.UserId == 1857248151 then
+return User
+end
+if User.UserId == 1008264392 then
+return User
+end
+if User.UserId == 331720532 then
+return User
+end
+if User.UserId == 1326183322 then
+return User
+end
+if User.UserId == 56947758 then
+return User
+end
+end
+
+
 if _G.MODCHECK == true then
 for i, v in next, game.Players:GetPlayers() do
 local x = ModCheck(v)
