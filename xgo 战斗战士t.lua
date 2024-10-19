@@ -148,7 +148,6 @@ about:Button( "表情",function(v)
         end
     end
 )
-about:Button( "自动园林",function(v)
 
 about:Slider("步行速度", "WalkSpeed", game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, 16, 400, false, function(Speed)
   spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed end end)
