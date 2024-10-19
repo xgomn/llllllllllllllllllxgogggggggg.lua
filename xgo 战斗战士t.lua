@@ -12,10 +12,129 @@ about:Label("goto战斗战士")
 about:Label("你的注入器:"..identifyexecutor())
 about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
 
-local UITab2 = win:Tab("『愤怒』",'16060333448')
+local UITab2 = win:Tab("『主要』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)   
- about:Button( "表情",function(v)
+ about:Toggle("自动寻找玩家","Toggle",false,function()
+        _G.followclosest = true
+	follow_unchecked.Visible = false
+	follow_checked.Visible = true
+    end
+)
+about:Toggle("自动跳","Toggle",false,function()
+        _G.autojump = true
+	jump_unchecked.Visible = false
+	jump_checked.Visible = true
+    end
+)
+about:Toggle("自动复活","Toggle",false,function()
+        _G.autospawn = false
+	spawn_unchecked.Visible = true
+	spawn_checked.Visible = false
+    end
+)
+
+about:Toggle("杀死光环","Toggle",false,function()
+        _G.killsay = false
+	killsay_unchecked.Visible = true
+	killsay_checked.Visible = false
+end)
+
+
+about:Toggle("自动机中","Toggle",false,function()
+        _G.autohit = true
+	autohit_unchecked.Visible = false
+	autohit_checked.Visible = true
+    end
+)
+about:Toggle("无限招架","Toggle",false,function(val)
+        for i,v in pairs(getgc(true)) do
+            if type(v) == "table" and rawget(v, "PARRY_COOLDOWN_IN_SECONDS") and rawget(v, "PARRY_COOLDOWN_IN_SECONDS_AFTER_SUCCESSFUL_PARRY") then
+                if val then
+                    v.PARRY_COOLDOWN_IN_SECONDS = 0
+                    v.PARRY_COOLDOWN_IN_SECONDS_AFTER_SUCCESSFUL_PARRY = 0
+                else
+                    v.PARRY_COOLDOWN_IN_SECONDS = 3
+                    v.PARRY_COOLDOWN_IN_SECONDS_AFTER_SUCCESSFUL_PARRY = 0.33
+                end
+            end
+        end
+    end
+)
+
+about:Toggle("无限耐力","Toggle",false,function(val)
+        for i,v in pairs(getgc(true)) do
+            if typeof(v) == "table" and rawget(v, "_setStamina") then
+                local old = v._setStamina
+                v._setStamina = function(among, us)
+                    if val then
+                        among._stamina = math.huge
+                        among._staminaChangedSignal:Fire(150)
+                    else
+                        return old(among, us)
+                    end
+                end
+            end
+         end
+    end
+)
+
+about:Toggle("启用","Toggle",false,function()
+        _G.enabled = false
+	killaura_unchecked.Visible = true
+	killaura_checked.Visible = false
+    end
+)
+about:Toggle("反招架","Toggle",false,function()
+        _G.antiparry = true
+	antiparry_unchecked.Visible = false
+	antiparry_checked.Visible = true
+    end
+)
+about:Toggle("没有破折号冷却","Toggle",false,function(val)
+        for i,v2 in pairs(getgc(true)) do
+            if typeof(v2) == "table" and rawget(v2, "DASH_COOLDOWN") then
+                if val then
+                    v2.DASH_COOLDOWN = 0
+                else
+                    v2.DASH_COOLDOWN = 3
+
+                end
+            end
+        end
+    end
+)
+about:Toggle("斯托拉光环","Toggle",false,function()
+        _G.stompaura = true
+	stompaura_unchecked.Visible = false
+	stompaura_checked.Visible = true
+    end
+)
+about:Toggle("嘘它","Toggle",false,function()
+        _G.boostws = false
+	velocity_unchecked.Visible = true
+	velocity_checked.Visible = false
+    end
+)
+about:Toggle("没有布娃娃","Toggle",false,function(val)
+        for i,v in pairs(getgc(true)) do
+            if typeof(v) == "table" and rawget(v, "toggleRagdoll") then
+                local old = v.toggleRagdoll
+                v.toggleRagdoll = function(among, us, irl)
+                    if val then
+                        return
+                    else
+                        return old(among, us, irl)
+                    end
+                end
+            end
+        end
+    end
+)
+local UITab2 = win:Tab("『玩家』",'16060333448')
+
+local about = UITab2:section("『xxxxxxxgo』",true)
+about:Button( "表情",function(v)
         for i,v in pairs(getgc(true)) do
             if typeof(v) == "table" and rawget(v, "gamepassIdRequired") then
                 if v.gamepassIdRequired ==  "danceEmotes" then
@@ -29,7 +148,7 @@ local about = UITab2:section("『xxxxxxxgo』",true)
         end
     end
 )
-about:Button( "汽车园林",function(v)
+about:Button( "自动园林",function(v)
 
 	local lp = game.Players.LocalPlayer
 
@@ -97,112 +216,6 @@ end
 
 game.Players.PlayerAdded:Connect(playerAdded)
 end)
-about:Toggle("无限招架","Toggle",false,function(val)
-        for i,v in pairs(getgc(true)) do
-            if type(v) == "table" and rawget(v, "PARRY_COOLDOWN_IN_SECONDS") and rawget(v, "PARRY_COOLDOWN_IN_SECONDS_AFTER_SUCCESSFUL_PARRY") then
-                if val then
-                    v.PARRY_COOLDOWN_IN_SECONDS = 0
-                    v.PARRY_COOLDOWN_IN_SECONDS_AFTER_SUCCESSFUL_PARRY = 0
-                else
-                    v.PARRY_COOLDOWN_IN_SECONDS = 3
-                    v.PARRY_COOLDOWN_IN_SECONDS_AFTER_SUCCESSFUL_PARRY = 0.33
-                end
-            end
-        end
-    end
-)
-about:Toggle("垃圾邮件跳跃","Toggle",false,function(val)
-        for i,v in pairs(getgc(true)) do
-            if typeof(v) == "table" and rawget(v, "getCanJump") then
-                local old = v.getCanJump
-                if val then
-                    v.getCanJump = function()
-                        return true
-                    end
-                else
-                    return old()
-                end
-            end
-        end
-    end
-)
-about:Toggle("无限耐力","Toggle",false,function(val)
-        for i,v in pairs(getgc(true)) do
-            if typeof(v) == "table" and rawget(v, "_setStamina") then
-                local old = v._setStamina
-                v._setStamina = function(among, us)
-                    if val then
-                        among._stamina = math.huge
-                        among._staminaChangedSignal:Fire(150)
-                    else
-                        return old(among, us)
-                    end
-                end
-            end
-         end
-    end
-)
-about:Toggle("killaura","Toggle",false,function()
-        _G.drawlines = true
-	drawline_unchecked.Visible = false
-	drawline_checked.Visible = true
-  end)
-about:Toggle("killaura","Toggle",false,function()
-        _G.enabled = false
-	killaura_unchecked.Visible = true
-	killaura_checked.Visible = false
-    end
-)
-about:Toggle("antiparry","Toggle",false,function()
-        _G.antiparry = true
-	antiparry_unchecked.Visible = false
-	antiparry_checked.Visible = true
-    end
-)
-about:Toggle("没有破折号冷却","Toggle",false,function(val)
-        for i,v2 in pairs(getgc(true)) do
-            if typeof(v2) == "table" and rawget(v2, "DASH_COOLDOWN") then
-                if val then
-                    v2.DASH_COOLDOWN = 0
-                else
-                    v2.DASH_COOLDOWN = 3
-
-                end
-            end
-        end
-    end
-)
-about:Toggle("没有公用事业损坏","Toggle",false,function()
-        _G.stompaura = true
-	stompaura_unchecked.Visible = false
-	stompaura_checked.Visible = true
-    end
-)
-about:Toggle("自动生成","Toggle",false,function()
-        _G.boostws = false
-	velocity_unchecked.Visible = true
-	velocity_checked.Visible = false
-    end
-)
-about:Toggle("没有布娃娃","Toggle",false,function(val)
-        for i,v in pairs(getgc(true)) do
-            if typeof(v) == "table" and rawget(v, "toggleRagdoll") then
-                local old = v.toggleRagdoll
-                v.toggleRagdoll = function(among, us, irl)
-                    if val then
-                        return
-                    else
-                        return old(among, us, irl)
-                    end
-                end
-            end
-        end
-    end
-)
-local UITab2 = win:Tab("『玩家』",'16060333448')
-
-local about = UITab2:section("『xxxxxxxgo』",true)
-
 about:Slider("步行速度", "WalkSpeed", game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, 16, 400, false, function(Speed)
   spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed end end)
 end)
@@ -210,43 +223,8 @@ end)
 about:Slider("跳跃高度", "JumpPower", game.Players.LocalPlayer.Character.Humanoid.JumpPower, 50, 400, false, function(Jump)
   spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump end end)
 end)
-about:Toggle("自动跟随","Toggle",false,function()
-        _G.followclosest = true
-	follow_unchecked.Visible = false
-	follow_checked.Visible = true
-    end
-)
-about:Toggle("自动跳","Toggle",false,function()
-        _G.autojump = true
-	jump_unchecked.Visible = false
-	jump_checked.Visible = true
-    end
-)
-about:Toggle("自动复活","Toggle",false,function()
-        _G.autospawn = false
-	spawn_unchecked.Visible = true
-	spawn_checked.Visible = false
-    end
-)
-about:Toggle("自动装备","Toggle",false,function()
-        _G.autoequip = true
-	equip_unchecked.Visible = false
-	equip_checked.Visible = true
-end)
-about:Toggle("杀了","Toggle",false,function()
-        _G.killsay = false
-	killsay_unchecked.Visible = true
-	killsay_checked.Visible = false
-end)
 
-
-about:Toggle("隐藏名称","Toggle",false,function()
-        _G.autohit = true
-	autohit_unchecked.Visible = false
-	autohit_checked.Visible = true
-    end
-)
-about:Toggle("飞行","Toggle",false,function(val)
+about:Toggle("飞行? 飞你大爷","Toggle",false,function(val)
         flying = not flying
         if val then
             sFLY(true)
@@ -256,7 +234,7 @@ about:Toggle("飞行","Toggle",false,function(val)
     end
 )
 
-about:Button( "飞钥匙布",function(val)
+about:Button( "飞钥匙",function(val)
         flying = not flying
 
         if flying then
@@ -281,6 +259,11 @@ about:Toggle("耶稣","Toggle",false,function(val)
 local UITab2 = win:Tab("『战斗』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)
+about:Toggle("自动装备","Toggle",false,function()
+        _G.autoequip = true
+	equip_unchecked.Visible = false
+	equip_checked.Visible = true
+end)
 
 -- reach here
 about:Toggle("到达（破碎）","Toggle",false,function(val)
@@ -371,6 +354,21 @@ about:Toggle("没有反冲","Toggle",false,function(val)
         end
     end
 )
+about:Toggle("垃圾跳跃","Toggle",false,function(val)
+        for i,v in pairs(getgc(true)) do
+            if typeof(v) == "table" and rawget(v, "getCanJump") then
+                local old = v.getCanJump
+                if val then
+                    v.getCanJump = function()
+                        return true
+                    end
+                else
+                    return old()
+                end
+            end
+        end
+    end
+)
 about:Toggle("没有重力","Toggle",false,function(val)
         for i,v2 in pairs(getgc(true)) do
             if typeof(v2) == "table" and rawget(v2, "recoilAmount") then
@@ -395,7 +393,7 @@ about:Toggle("自动拍摄（破碎）","Toggle",false,function(val)
         end
     end
 )
-local UITab2 = win:Tab("『切换』",'16060333448')
+local UITab2 = win:Tab("『其他』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)
 about:Toggle("Fling","Toggle",false,function()
@@ -508,7 +506,14 @@ about:Toggle("击中声音","Toggle",false,function(val)
 local UITab2 = win:Tab("『ESP』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)
-about:Toggle("透视玩家","Toggle",false,function()
+about:Toggle("画线","Toggle",false,function()
+        _G.drawlines = true
+	drawline_unchecked.Visible = false
+	drawline_checked.Visible = true
+  end)
+about:Button("人物射线","function()   loadstring(game:HttpGet("https://raw.githubusercontent.com/xgomn/eeeeeeeeeeeppppppppppppssassssssssss/refs/heads/main/%E9%80%8F%E8%A7%86%E3%80%82%E6%A1%86%E6%9E%B6"))()ExunysDeveloperESP()     end)
+about:Toggle("透视玩家",function()    local Outlines = true         local OutlineColoring = Color3.fromRGB(255, 255, 255)         local OutlineFill = false         local FillOpacity = 1         local FillColoring = Color3.fromRGB(255, 255, 255)        local NameTags = true       local TextFont = Enum.Font.RobotoMono       local NameColor = Color3.fromRGB(255, 255, 255)       local NamePositioning = false              local Folder = Instance.new("Folder", game:GetService("CoreGui"))      Folder.Name = ""            AddOutline = function(Character)   local Highlight = Instance.new("Highlight", Folder)      Highlight.OutlineColor = OutlineColoring   Highlight.Adornee = Character   if OutlineFill == true then       Highlight.FillColor = FillColoring      Highlight.FillTransparency = FillOpacity   else       Highlight.FillTransparency = 1   end         end           AddNameTag = function(Character)   local BGui = Instance.new("BillboardGui", Folder)   local Frame = Instance.new("Frame", BGui)   local TextLabel = Instance.new("TextLabel", Frame)      BGui.Adornee = Character:WaitForChild("Head")   BGui.StudsOffset = Vector3.new(0, 3, 0)   BGui.AlwaysOnTop = true      BGui.Size = UDim2.new(4, 0, 0.5, 0)   Frame.Size = UDim2.new(1, 0, 1, 0)   TextLabel.Size = UDim2.new(1, 0, 1, 0)      Frame.BackgroundTransparency = 1   TextLabel.BackgroundTransparency = 1      TextLabel.Text = Character.Name   TextLabel.Font = TextFont   TextLabel.TextColor3 = NameColor   TextLabel.TextScaled = NamePositioning     end             for i, v in ipairs(game:GetService("Players"):GetPlayers()) do   if v ~= game:GetService("Players").LocalPlayer then       v.CharacterAdded:Connect(function(Character)           if Outlines == true then               AddOutline(Character)           end          if NameTags == true then              AddNameTag(Character)          end       end)              if v.Character then           if Outlines == true then               AddOutline(v.Character)           end           if NameTags == true then               AddNameTag(v.Character)           end       end   end     end          game:GetService("Players").PlayerAdded:Connect(function(Player)   Player.CharacterAdded:Connect(function(Character)       if Outlines == true then           AddOutline(Character)       end       if NameTags == true then           AddNameTag(Character)      end   end) end)	end    )
+about:Toggle("透视玩家名字","Toggle",false,function()
         _G.esp = true
 	esp_unchecked.Visible = false
 	esp_checked.Visible = true
@@ -637,7 +642,7 @@ function randomPlayer()
 	return RandomPlayer.DisplayName
 end
 
-local tableOfShit = {"why am i writing these messages when i can continue making the script better?! 🤣🤣😂🤣😂🤣🤣","do you ever have problems with light users parrying your ds??? get warriorhook! it has a great anti parry that works! (sometimes..)","get warriorhook!!!","oh im sorry, did i killaura you? i can whitelist you if you want boo 🥺🥺🥺🥺","🤣🤣😂🤣🤣","hey ".. randomPlayer() ..", is your dad spiderman? cause he far from home.","EZ EZ EZ EZ EZ","are you even trying?? lulululul","damn bro you got the whole squad cringing","omg ".. randomPlayer() .. " im your biggest fan!!!","how are you that bad??🤣🤣😂🤣🤣","dont even bother insulting me 🤣🤣😂 im not even touching my keyboard!!","oh god... not ".. randomPlayer() .." again...","OMG!! IS THAT THE FAMOUS ".. randomPlayer() .. "???","vex really thinks this is gonna work...", "haha got you!!!", "who the hell is vex? oh the creator of this crap script?", "get reck't noobie", "warriorhook on top!!! (not really)", "project hook has some pretty cool features","Y1K is daddy 😋😋😋", "samuel you bozo your script is patched!!!","pls pls give vouch copy!!!", "😭 oh no! 😭😭 did i 😭😭 kill your mans?? 😭😭😭😭", "you: 😭😭 noooo i got murdered by a lvl ".. game.Players.LocalPlayer.leaderstats.Level.Value.."!!!", "oh my god im so sorry for killing you 😭😭😭😭😭😭😭", "oh 😭😭 did i hurt your 😭😭 feelings???", "get good with project hoo- i mean with warriorhook!!!", "samuel no one cares about criminality!!!😭😭", "who even wrote this crappy code??😭", "this script was brought to you by raid shadow legends!!", "do you like cheese?", "😭😭 imagine 😭😭 dying 😭😭", "get killaura'd!!!", "oh no 😭😭 did i kill your 😭😭 girl?? 😭😭😭"}
+local tableOfShit = {"为什么我可以在继续使脚本更好时写这些消息？！ 🤣🤣😂🤣😂🤣🤣","你有没有遇到的光线用户帕雷德你的ds ??? 获取Warriorhook！ 它有一个伟大的反帕克，有效！ （有时..）","获取战士钩!!!","哦，对不起，我杀了你吗？ 如果你想要嘘声，我可以白发别选你","🤣🤣😂🤣🤣","嘿，".. randomPlayer() ..", 你的爸爸蜘蛛侠是吗？ 因为他远离家乡.","ez ez ez ez ez“，”你甚至在努力吗","该死的兄弟你得到了整个小队畏缩","omg".. randomPlayer() .. " im your biggest fan!!!","how are you that bad??🤣🤣😂🤣🤣","dont even bother insulting me 🤣🤣😂 im not even touching my keyboard!!","oh god... not ".. randomPlayer() .." again...","OMG!! IS THAT THE FAMOUS ".. randomPlayer() .. "???","vex真的认为这将工作......","哈哈得到了你!!!","哦，不xxxxxxxxxxgo","再次获得Noobie","Wariorhook上面!!! （不是真的）","项目挂钩有一些非常酷的功能","xxx是爸爸😋😋😋",,"请给予","😭哦不！ 😭😭我杀了你的男人吗？ 😭😭😭😭","你：😭😭noooo我被一个lvl谋杀了一个lvl“..游戏.players.localplayer.leaderstats.level.value ..”!!!","哦，我的上帝我很抱歉杀了你","哦😭😭我是否伤害了你的感情？","项目hoo  - 我的意思是与战士!!!","塞缪尔没有人关心犯罪!!!",,"这个脚本是通过RAID阴影传说带来了!!","你喜欢奶酪吗？","♥xxxxxg😭😭死去","得到杀戮的!!!","哦，哦，哦，我杀了你的♥女孩？ 😭😭😭"}
 
 local function RandomString(t)
 	return t[math.random(1, #t)]
