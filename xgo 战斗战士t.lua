@@ -15,33 +15,33 @@ about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
 local UITab2 = win:Tab("『主要』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)   
- about:Toggle("自动寻找玩家","Toggle",false,function()
+ about:Toggle("自动寻找玩家","Toggle",false,function(true)
         _G.followclosest = true
 	follow_unchecked.Visible = false
 	follow_checked.Visible = true
     end
 )
-about:Toggle("自动跳","Toggle",false,function()
+about:Toggle("自动跳","Toggle",false,function(true)
         _G.autojump = true
 	jump_unchecked.Visible = false
 	jump_checked.Visible = true
     end
 )
-about:Toggle("自动复活","Toggle",false,function()
+about:Toggle("自动复活","Toggle",false,function(false)
         _G.autospawn = false
 	spawn_unchecked.Visible = true
 	spawn_checked.Visible = false
     end
 )
 
-about:Toggle("杀死光环","Toggle",false,function()
+about:Toggle("杀死光环","Toggle",false,function(false)
         _G.killsay = false
 	killsay_unchecked.Visible = true
 	killsay_checked.Visible = false
 end)
 
 
-about:Toggle("自动机中","Toggle",false,function()
+about:Toggle("自动击中","Toggle",false,function(true)
         _G.autohit = true
 	autohit_unchecked.Visible = false
 	autohit_checked.Visible = true
@@ -79,13 +79,13 @@ about:Toggle("无限耐力","Toggle",false,function(val)
     end
 )
 
-about:Toggle("启用","Toggle",false,function()
+about:Toggle("启用","Toggle",false,function(false)
         _G.enabled = false
 	killaura_unchecked.Visible = true
 	killaura_checked.Visible = false
     end
 )
-about:Toggle("反招架","Toggle",false,function()
+about:Toggle("反招架","Toggle",false,function(true)
         _G.antiparry = true
 	antiparry_unchecked.Visible = false
 	antiparry_checked.Visible = true
@@ -104,7 +104,7 @@ about:Toggle("没有破折号冷却","Toggle",false,function(val)
         end
     end
 )
-about:Toggle("斯托拉光环","Toggle",false,function()
+about:Toggle("斯托拉光环","Toggle",false,function(val)
         _G.stompaura = true
 	stompaura_unchecked.Visible = false
 	stompaura_checked.Visible = true
@@ -266,7 +266,7 @@ about:Toggle("自动装备","Toggle",false,function()
 end)
 
 -- reach here
-about:Toggle("到达（破碎）","Toggle",false,function(val)
+about:Toggle("到达（破碎）不知道哪一个可能会导致卡屏","Toggle",false,function(val)
         Reaching = val
         if val == false then return end
         local character = game.Players.LocalPlayer.Character
@@ -506,14 +506,16 @@ about:Toggle("击中声音","Toggle",false,function(val)
 local UITab2 = win:Tab("『ESP』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)
-about:Toggle("画线","Toggle",false,function()
+about:Toggle("画线","Toggle",false,function(true)
         _G.drawlines = true
 	drawline_unchecked.Visible = false
 	drawline_checked.Visible = true
   end)
-about:Button("人物射线",function()   loadstring(game:HttpGet("https://raw.githubusercontent.com/xgomn/eeeeeeeeeeeppppppppppppssassssssssss/refs/heads/main/%E9%80%8F%E8%A7%86%E3%80%82%E6%A1%86%E6%9E%B6"))()ExunysDeveloperESP()     end)
+about:Button("人物射线",function()   
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xgomn/eeeeeeeeeeeppppppppppppssassssssssss/refs/heads/main/%E9%80%8F%E8%A7%86%E3%80%82%E6%A1%86%E6%9E%B6"))()ExunysDeveloperESP()     end)
+
 about:Toggle("透视玩家",function()    local Outlines = true         local OutlineColoring = Color3.fromRGB(255, 255, 255)         local OutlineFill = false         local FillOpacity = 1         local FillColoring = Color3.fromRGB(255, 255, 255)        local NameTags = true       local TextFont = Enum.Font.RobotoMono       local NameColor = Color3.fromRGB(255, 255, 255)       local NamePositioning = false              local Folder = Instance.new("Folder", game:GetService("CoreGui"))      Folder.Name = ""            AddOutline = function(Character)   local Highlight = Instance.new("Highlight", Folder)      Highlight.OutlineColor = OutlineColoring   Highlight.Adornee = Character   if OutlineFill == true then       Highlight.FillColor = FillColoring      Highlight.FillTransparency = FillOpacity   else       Highlight.FillTransparency = 1   end         end           AddNameTag = function(Character)   local BGui = Instance.new("BillboardGui", Folder)   local Frame = Instance.new("Frame", BGui)   local TextLabel = Instance.new("TextLabel", Frame)      BGui.Adornee = Character:WaitForChild("Head")   BGui.StudsOffset = Vector3.new(0, 3, 0)   BGui.AlwaysOnTop = true      BGui.Size = UDim2.new(4, 0, 0.5, 0)   Frame.Size = UDim2.new(1, 0, 1, 0)   TextLabel.Size = UDim2.new(1, 0, 1, 0)      Frame.BackgroundTransparency = 1   TextLabel.BackgroundTransparency = 1      TextLabel.Text = Character.Name   TextLabel.Font = TextFont   TextLabel.TextColor3 = NameColor   TextLabel.TextScaled = NamePositioning     end             for i, v in ipairs(game:GetService("Players"):GetPlayers()) do   if v ~= game:GetService("Players").LocalPlayer then       v.CharacterAdded:Connect(function(Character)           if Outlines == true then               AddOutline(Character)           end          if NameTags == true then              AddNameTag(Character)          end       end)              if v.Character then           if Outlines == true then               AddOutline(v.Character)           end           if NameTags == true then               AddNameTag(v.Character)           end       end   end     end          game:GetService("Players").PlayerAdded:Connect(function(Player)   Player.CharacterAdded:Connect(function(Character)       if Outlines == true then           AddOutline(Character)       end       if NameTags == true then           AddNameTag(Character)      end   end) end)	end    )
-about:Toggle("透视玩家名字","Toggle",false,function()
+about:Toggle("透视玩家名字","Toggle",false,function(true)
         _G.esp = true
 	esp_unchecked.Visible = false
 	esp_checked.Visible = true
