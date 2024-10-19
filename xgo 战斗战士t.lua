@@ -16,9 +16,9 @@ local UITab2 = win:Tab("『主要』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)   
  about:Toggle("自动寻找玩家","Toggle",false,function()
-        _G.followclosest = true
-	follow_unchecked.Visible = false
-	follow_checked.Visible = true
+        _G.followclosest = true,false
+	follow_unchecked.Visible = false,true
+	follow_checked.Visible = true,false
     end
 )
 about:Toggle("自动跳","Toggle",false,function()
@@ -28,16 +28,16 @@ about:Toggle("自动跳","Toggle",false,function()
     end
 )
 about:Toggle("自动复活","Toggle",false,function()
-        _G.autospawn = false
-	spawn_unchecked.Visible = true
-	spawn_checked.Visible = false
+        _G.autospawn = true
+	spawn_unchecked.Visible = false
+	spawn_checked.Visible = true
     end
 )
 
 about:Toggle("杀死光环","Toggle",false,function()
-        _G.killsay = false
-	killsay_unchecked.Visible = true
-	killsay_checked.Visible = false
+        _G.killsay = true
+	killsay_unchecked.Visible = false
+	killsay_checked.Visible = true
 end)
 
 
@@ -80,9 +80,9 @@ about:Toggle("无限耐力","Toggle",false,function(val)
 )
 
 about:Toggle("启用","Toggle",false,function()
-        _G.enabled = false
-	killaura_unchecked.Visible = true
-	killaura_checked.Visible = false
+        _G.enabled = true
+	killaura_unchecked.Visible = false
+	killaura_checked.Visible = true
     end
 )
 about:Toggle("反招架","Toggle",false,function()
@@ -111,9 +111,9 @@ about:Toggle("斯托拉光环","Toggle",false,function(val)
     end
 )
 about:Toggle("嘘它","Toggle",false,function()
-        _G.boostws = false
-	velocity_unchecked.Visible = true
-	velocity_checked.Visible = false
+        _G.boostws = true
+	velocity_unchecked.Visible = false
+	velocity_checked.Visible = true
     end
 )
 about:Toggle("没有布娃娃","Toggle",false,function(val)
