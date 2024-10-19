@@ -1,4 +1,388 @@
+-- DO NOT SHARE THIS. THE EXECUTION WILL BE LOGGED AND YOUR KEY WILL GET BLACKLISTED!!!
+_G.key = "key not needed" -- Put your key inside the quotes. "my-key-here"
 
+-- KILLAURA METHOD, METHOD 2 MIGHT BE LESS LAGGY, BUT ALSO NOT AS EFFECTIVE!
+_G.usemethod2 = false
+
+-- RIGHT SHIFT TO TOGGLE GUI!
+_G.enabled = false
+_G.antiparry = false
+_G.stompaura = false
+_G.drawlines = false
+_G.range = 15
+_G.autohit = false
+_G.autospawn = false
+_G.followclosest = false
+_G.autoequip = false
+_G.autojump = false
+_G.boostws = false
+_G.killsay = false
+_G.usehitbox = 10
+_G.esp = false
+_G.usecustomaudio = true
+_G.tpOverHead = false -- THIS ONLY WORKS ON KILLAURA METHOD 2!!!
+
+-- If the script is lagging you, try putting this to 3 or higher. Lower value = more consistant killaura hits but more lag.
+_G.loopspeed = 2
+
+function addLine(myHrp, theirHrp)
+	if not theirHrp.Parent.Torso:FindFirstChild("Beam") then
+		if _G.drawlines == true then
+			local beam = Instance.new("Beam", theirHrp.Parent.Torso)
+			local att0 = Instance.new("Attachment", theirHrp.Parent.Torso)
+			local att1 = Instance.new("Attachment", myHrp)
+
+			beam.Attachment0 = att0
+			beam.Attachment1 = att1
+
+			beam.Width0 = 0.2
+			beam.Width1 = 0.2
+
+			beam.LightEmission = 1
+			beam.LightInfluence = 0
+
+			beam.FaceCamera = true
+
+			if theirHrp.Parent.Humanoid.Health <= 15 then
+				beam.Color = ColorSequence.new(Color3.fromRGB(255,0,0),Color3.fromRGB(255,0,0))
+			else if theirHrp.Parent.Humanoid.Health >= 16 and theirHrp.Parent.Humanoid.Health <= 50 then
+					beam.Color = ColorSequence.new(Color3.fromRGB(255, 170, 0),Color3.fromRGB(255, 170, 0))
+				else
+					beam.Color = ColorSequence.new(Color3.fromRGB(59, 255, 0),Color3.fromRGB(59, 255, 0))
+				end
+			end
+		end
+	end
+end
+
+-- shit ass esp cause im bad with drawing and math
+function addEsp()
+	for i,v in pairs(game.Workspace.PlayerCharacters:GetChildren()) do
+		if v.Name ~= game.Players.LocalPlayer.Name then
+			if not v.HumanoidRootPart:FindFirstChild("eyeesspee") then
+				local billboard = Instance.new("BillboardGui", v:WaitForChild("Head"))
+				billboard.LightInfluence = 0
+				billboard.Size = UDim2.new(40, 40, 1, 1)
+				billboard.StudsOffset = Vector3.new(0, 3, 0)
+				billboard.ZIndexBehavior = "Global"
+				billboard.ClipsDescendants = false
+				billboard.AlwaysOnTop = true
+				billboard.Name = "Head"
+
+				local billboard2 = Instance.new("BillboardGui", v:WaitForChild("HumanoidRootPart"))
+				billboard2.LightInfluence = 0
+				billboard2.Size = UDim2.new(3, 3, 5, 5)
+				billboard2.StudsOffset = Vector3.new(0, 0, 0)
+				billboard2.ZIndexBehavior = "Global"
+				billboard2.ClipsDescendants = false
+				billboard2.AlwaysOnTop = true
+				billboard2.Name = "eyeesspee"
+
+				local textBox = Instance.new("TextBox", billboard)
+				textBox.BackgroundTransparency = 1
+				textBox.ClearTextOnFocus = false
+				textBox.MultiLine = true
+				textBox.Size = UDim2.new(1, 1, 1, 1)
+				textBox.Font = "GothamBold"
+				textBox.Text = v.Name
+				textBox.TextScaled = true
+				textBox.TextYAlignment = "Top"
+				textBox.TextColor3 = Color3.fromRGB(255, 55, 55)
+
+				local textBox2 = Instance.new("TextBox", billboard2)
+				textBox2.BackgroundTransparency = 1
+				textBox2.ClearTextOnFocus = false
+				textBox2.MultiLine = true
+				textBox2.Size = UDim2.new(1, 1, 1, 1)
+				textBox2.Font = "GothamBold"
+				textBox2.Text = " "
+				textBox2.BackgroundTransparency = 0.85
+				textBox2.TextScaled = true
+				textBox2.TextYAlignment = "Top"
+				textBox2.BackgroundColor3 = Color3.fromRGB(126, 0, 0)
+			end
+		end
+	end
+end
+
+function removeEsp()
+	for i,v in pairs(game.Workspace.PlayerCharacters:GetChildren()) do
+		if v.Name ~= game.Players.LocalPlayer.Name then
+			if v.HumanoidRootPart:FindFirstChild("eyeesspee") then
+				v.HumanoidRootPart:FindFirstChild("eyeesspee"):Destroy()
+				v.Head.Head:Destroy()
+			end
+		end
+	end
+end
+
+function randomPlayer()
+	math.randomseed(os.time())
+	local RandomPlayer = game.Players:GetPlayers()[math.random(1,#game.Players:GetPlayers())]
+	return RandomPlayer.DisplayName
+end
+
+local tableOfShit = {"why am i writing these messages when i can continue making the script better?! 🤣🤣😂🤣😂🤣🤣","do you ever have problems with light users parrying your ds??? get warriorhook! it has a great anti parry that works! (sometimes..)","get warriorhook!!!","oh im sorry, did i killaura you? i can whitelist you if you want boo 🥺🥺🥺🥺","🤣🤣😂🤣🤣","hey ".. randomPlayer() ..", is your dad spiderman? cause he far from home.","EZ EZ EZ EZ EZ","are you even trying?? lulululul","damn bro you got the whole squad cringing","omg ".. randomPlayer() .. " im your biggest fan!!!","how are you that bad??🤣🤣😂🤣🤣","dont even bother insulting me 🤣🤣😂 im not even touching my keyboard!!","oh god... not ".. randomPlayer() .." again...","OMG!! IS THAT THE FAMOUS ".. randomPlayer() .. "???","vex really thinks this is gonna work...", "haha got you!!!", "who the hell is vex? oh the creator of this crap script?", "get reck't noobie", "warriorhook on top!!! (not really)", "project hook has some pretty cool features","Y1K is daddy 😋😋😋", "samuel you bozo your script is patched!!!","pls pls give vouch copy!!!", "😭 oh no! 😭😭 did i 😭😭 kill your mans?? 😭😭😭😭", "you: 😭😭 noooo i got murdered by a lvl ".. game.Players.LocalPlayer.leaderstats.Level.Value.."!!!", "oh my god im so sorry for killing you 😭😭😭😭😭😭😭", "oh 😭😭 did i hurt your 😭😭 feelings???", "get good with project hoo- i mean with warriorhook!!!", "samuel no one cares about criminality!!!😭😭", "who even wrote this crappy code??😭", "this script was brought to you by raid shadow legends!!", "do you like cheese?", "😭😭 imagine 😭😭 dying 😭😭", "get killaura'd!!!", "oh no 😭😭 did i kill your 😭😭 girl?? 😭😭😭"}
+
+local function RandomString(t)
+	return t[math.random(1, #t)]
+end
+
+game.Players.LocalPlayer.leaderstats.Score.Changed:connect(function()
+	if _G.killsay == true then
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(RandomString(tableOfShit),"All")
+	end
+end)
+
+function remLine(theirHrp)
+	if theirHrp.Parent.Torso:FindFirstChild("Beam") then
+		theirHrp.Parent.Torso:FindFirstChild("Beam"):Destroy()
+	end
+end
+
+function walkToClosest()
+	local closestCurrent = nil
+	local currentMagnitude = 999999
+
+	local myHrp = game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChild("HumanoidRootPart")
+
+	for i, v in pairs(game:GetService("Workspace").PlayerCharacters:GetChildren()) do
+		if v.Name ~= game.Players.LocalPlayer.Name then
+			if v.Humanoid.Health ~= 0 then
+				local theirHrp = v:FindFirstChild("HumanoidRootPart")
+				if (myHrp.Position - theirHrp.Position).Magnitude < currentMagnitude then
+					if theirHrp.Parent.Humanoid.Health ~= 0 then
+						currentMagnitude = (myHrp.Position - theirHrp.Position).Magnitude
+						closestCurrent = theirHrp
+					end
+				end
+			end
+		end
+	end
+
+	if _G.autojump == true then
+		keypress(0x20)
+	end
+	game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid").WalkToPoint = closestCurrent.Position
+end
+
+function getClosestHrp()
+	local closestCurrent = nil
+	local currentMagnitude = 999999
+
+	local myHrp = game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChild("HumanoidRootPart")
+
+	for i, v in pairs(game:GetService("Workspace").PlayerCharacters:GetChildren()) do
+		if v.Name ~= game.Players.LocalPlayer.Name then
+			if v.Humanoid.Health ~= 0 then
+				local theirHrp = v:FindFirstChild("HumanoidRootPart")
+				if (myHrp.Position - theirHrp.Position).Magnitude < currentMagnitude then
+					if (myHrp.Position - theirHrp.Position).Magnitude <= _G.range and theirHrp.Parent.Humanoid.Health ~= 0 then
+						currentMagnitude = (myHrp.Position - theirHrp.Position).Magnitude
+						closestCurrent = theirHrp
+						addLine(myHrp, theirHrp)
+					else
+						remLine(theirHrp)
+					end
+				end
+			end
+		end
+	end
+
+	return closestCurrent
+end
+
+function setAttachmentWorldCFrame(attachment, cf)
+	attachment.CFrame = attachment.Parent.CFrame:toObjectSpace(cf)
+end
+
+local hittable = 0
+local walktocount = 0
+local espCount = 0
+local canLoop = 0
+local boostingws = false
+local canStomp = 0
+
+game:GetService("RunService").RenderStepped:connect(function()
+	if game.Players.LocalPlayer.PlayerGui.RoactUI:FindFirstChild("MainMenu") and _G.autospawn == true then
+		keypress(0x20)
+		keyrelease(0x20)
+	end
+
+	if _G.autoequip == true then
+		if not game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChildOfClass("Tool") and not game.Players.LocalPlayer.PlayerGui.RoactUI:FindFirstChild("MainMenu") then
+			keypress(0x31)
+			keyrelease(0x31)
+		end
+	end
+
+	if espCount == 60 then
+		if _G.esp == true then
+			addEsp()
+		else
+			removeEsp()
+		end
+
+		espCount = 0
+	end
+
+	espCount = espCount + 1
+	canLoop = canLoop + 1
+	canStomp = canStomp + 1
+
+	if walktocount == 10 then
+		if _G.followclosest == true then
+			walkToClosest()
+		end
+		if _G.boostws == true then
+			if boostingws == true then
+				boostingws = false
+				game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChild("HumanoidRootPart").Velocity = game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChild("HumanoidRootPart").CFrame.lookVector * (65) + Vector3.new(math.random(-40,40),0,math.random(-40,40))
+			else
+				boostingws = true
+			end
+		end
+		walktocount = 0
+	end
+
+	walktocount = walktocount + 1
+
+	if game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChildOfClass("Tool").Hitboxes:FindFirstChild("Hitbox2") then
+		game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChildOfClass("Tool").Hitboxes:FindFirstChild("Hitbox2"):Destroy()
+	end
+
+	local enabled = game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChildOfClass("Tool"):FindFirstChild("ClientEquipProgress")
+
+	local theirHrp = getClosestHrp()
+
+	if _G.usemethod2 == false then
+		if canLoop == _G.loopspeed or canLoop > _G.loopspeed then
+			canLoop = 0
+			for i,v in pairs(game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChildOfClass("Tool").Hitboxes.Hitbox:GetChildren()) do
+				if i <= _G.usehitbox then
+					if v.Name == "DmgPoint" then
+
+						if _G.antiparry == true then
+							if theirHrp.Parent.SemiTransparentShield.Transparency == 1 then
+								enabled.Value = 1
+								if _G.enabled == true then
+									setAttachmentWorldCFrame(v, CFrame.new(theirHrp.Position + Vector3.new(math.random(-1,1),math.random(-1,1),math.random(-1,1))))
+								end
+							else
+								setAttachmentWorldCFrame(v, CFrame.new(theirHrp.Position + Vector3.new(123,123,123)))
+								enabled.Value = 0
+							end
+						else
+							if _G.enabled == true then
+								setAttachmentWorldCFrame(v, CFrame.new(theirHrp.Position + Vector3.new(math.random(-1,1),math.random(-1,1),math.random(-1,1))))
+							end
+
+						end
+					end
+				else
+					setAttachmentWorldCFrame(v, CFrame.new(game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name]:FindFirstChild("Head").Position + Vector3.new(0, 10, 0)))
+				end
+			end
+		end
+
+
+		if _G.stompaura == true then
+			for i,s in pairs(game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name].Stomp.Hitboxes.RightLegHitbox:GetChildren()) do
+				if s.Name == "DmgPoint" then
+					s.Visible = true
+					if i <= _G.usehitbox then
+						if theirHrp.Parent.Humanoid.Health <= 15 then
+							setAttachmentWorldCFrame(s, CFrame.new(theirHrp.Position + Vector3.new(math.random(-1,1),math.random(-1,1),math.random(-1,1))))
+							if canStomp >= 30 then
+								keypress(0x51)
+								keyrelease(0x51)
+								canStomp = 0
+							end
+						end
+					end
+				end
+			end
+		end
+	else
+
+
+		local me = game:GetService("Workspace").PlayerCharacters:FindFirstChild(game:GetService("Players").LocalPlayer.Name)
+		local hitbox = me:FindFirstChildOfClass("Tool").Hitboxes.Hitbox
+		local hitboxes = me:FindFirstChildOfClass("Tool").Hitboxes
+		local tool = me:FindFirstChildOfClass("Tool")
+		local enabled = tool:FindFirstChild("ClientEquipProgress")
+
+		if hitboxes:FindFirstChild("Hitbox2") then
+			hitboxes:FindFirstChild("Hitbox2"):Destroy()
+		end
+
+		if _G.killaura == true then
+			for i,v in pairs(game:GetService("Workspace").PlayerCharacters:GetChildren()) do
+				if v.Name ~= game.Players.LocalPlayer.Name then
+					if v:FindFirstChild("Right Arm") then
+						for i,s in pairs(v:FindFirstChild("Torso"):GetChildren()) do
+							if s.Name == "Right Shoulder" then
+								s:Destroy()
+							end
+						end
+						for i,s in pairs(v:FindFirstChild("Right Arm"):GetChildren()) do
+							s:Destroy()
+						end
+						if (me.HumanoidRootPart.Position - v:FindFirstChild("Torso").Position).Magnitude <= 20 then
+							if _G.tpOverHead == true then
+								me.HumanoidRootPart.Anchored = true
+								me.HumanoidRootPart.CFrame = CFrame.new(v:FindFirstChild("Head").Position + Vector3.new(0, 5, 0))
+							end
+
+							local vectorDec = math.random(9999)
+							local vectorWhole = 0
+							local vector = tostring(vectorWhole .. "." .. vectorDec)
+							local vectorComplete = tonumber(vector)
+
+							if v:FindFirstChild("SemiTransparentShield").Transparency == 1 then
+								v:FindFirstChild("Right Arm").CFrame = hitbox.CFrame + Vector3.new(0, vectorComplete, 0)
+								v:FindFirstChild("Right Arm").CanCollide = false
+								enabled.Value = 1
+							else
+								enabled.Value = 0
+							end
+						else
+							if _G.tpOverHead == true then
+								me.HumanoidRootPart.Anchored = false
+							end
+						end
+					end
+				end
+			end
+		end
+
+		if _G.stompaura == true then
+			for i,s in pairs(game.Workspace.PlayerCharacters[game.Players.LocalPlayer.Name].Stomp.Hitboxes.RightLegHitbox:GetChildren()) do
+				if s.Name == "DmgPoint" then
+					s.Visible = true
+					if i <= _G.usehitbox then
+						if theirHrp.Parent.Humanoid.Health <= 15 then
+							setAttachmentWorldCFrame(s, CFrame.new(theirHrp.Position + Vector3.new(math.random(-1,1),math.random(-1,1),math.random(-1,1))))
+							if canStomp >= 30 then
+								keypress(0x51)
+								keyrelease(0x51)
+								canStomp = 0
+							end
+						end
+					end
+				end
+			end
+		end
+
+	end
+end)
+
+if _G.usecustomaudio == true then
+	game:GetService("ReplicatedStorage").Shared.Assets.Sounds.HitmarkerSound.SoundId = "rbxassetid://5148302439"
+	game:GetService("ReplicatedStorage").Shared.Assets.Sounds.AirdropOpen.SoundId = "rbxassetid://904663967"
+	game:GetService("ReplicatedStorage").Shared.Assets.Sounds.UIClickSound.SoundId = "rbxassetid://2483029612"
+	game:GetService("ReplicatedStorage").Shared.Assets.Sounds.KillSound.SoundId = "rbxassetid://165013277"
+end
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/neilonmacedo153/refs/heads/main/xgoui.txt"))();    
 local win = ui:new("goto战斗战士")
 
@@ -97,7 +481,7 @@ end
 
 game.Players.PlayerAdded:Connect(playerAdded)
 end)
-about:Toggle("无限招贴","Toggle",false,function(val)
+about:Toggle("无限招架","Toggle",false,function(val)
         for i,v in pairs(getgc(true)) do
             if type(v) == "table" and rawget(v, "PARRY_COOLDOWN_IN_SECONDS") and rawget(v, "PARRY_COOLDOWN_IN_SECONDS_AFTER_SUCCESSFUL_PARRY") then
                 if val then
@@ -142,12 +526,21 @@ about:Toggle("无限耐力","Toggle",false,function(val)
          end
     end
 )
-about:Toggle("没有灾难损坏","Toggle",false,function(val)
-        nofall = val
+about:Toggle("killaura","Toggle",false,function(val)
+        _G.drawlines = true
+	drawline_unchecked.Visible = false
+	drawline_checked.Visible = true
+  end)
+about:Toggle("killaura","Toggle",false,function(val)
+        _G.enabled = false
+	killaura_unchecked.Visible = true
+	killaura_checked.Visible = false
     end
 )
-about:Toggle("斯托拉光环","Toggle",false,function(val)
-        stompaura = val
+about:Toggle("antiparry","Toggle",false,function(val)
+        _G.antiparry = true
+	antiparry_unchecked.Visible = false
+	antiparry_checked.Visible = true
     end
 )
 about:Toggle("没有破折号冷却","Toggle",false,function(val)
@@ -164,11 +557,15 @@ about:Toggle("没有破折号冷却","Toggle",false,function(val)
     end
 )
 about:Toggle("没有公用事业损坏","Toggle",false,function(val)
-        antidamage = val
+        _G.stompaura = true
+	stompaura_unchecked.Visible = false
+	stompaura_checked.Visible = true
     end
 )
 about:Toggle("自动生成","Toggle",false,function(val)
-        autoSpawn = val
+        _G.boostws = false
+	velocity_unchecked.Visible = true
+	velocity_checked.Visible = false
     end
 )
 about:Toggle("没有布娃娃","Toggle",false,function(val)
@@ -197,21 +594,40 @@ end)
 about:Slider("跳跃高度", "JumpPower", game.Players.LocalPlayer.Character.Humanoid.JumpPower, 50, 400, false, function(Jump)
   spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump end end)
 end)
+about:Toggle("自动跟随","Toggle",false,function()
+        _G.followclosest = true
+	follow_unchecked.Visible = false
+	follow_checked.Visible = true
+    end
+)
+about:Toggle("自动跳","Toggle",false,function()
+        _G.autojump = true
+	jump_unchecked.Visible = false
+	jump_checked.Visible = true
+    end
+)
+about:Toggle("自动复活","Toggle",false,function(val)
+        _G.autospawn = false
+	spawn_unchecked.Visible = true
+	spawn_checked.Visible = false
+    end
+)
+about:Toggle("自动装备","Toggle",false,function(val)
+        _G.autoequip = true
+	equip_unchecked.Visible = false
+	equip_checked.Visible = true
+)
+about:Toggle("杀了","Toggle",false,function()
+        _G.killsay = false
+	killsay_unchecked.Visible = true
+	killsay_checked.Visible = false
+end)
 
-about:Toggle("无限跳","Toggle",false,function(val)
-        infjump = val
-    end
-)
-about:Toggle("没有剪辑","Toggle",false,function(val)
-        noclip = val
-    end
-)
-about:Toggle("杀了","Toggle",false,function(val)
-        killsay = val
-    end
-)
+
 about:Toggle("隐藏名称","Toggle",false,function(val)
-        hidename = val
+        _G.autohit = true
+	autohit_unchecked.Visible = false
+	autohit_checked.Visible = true
     end
 )
 about:Toggle("飞行","Toggle",false,function(val)
@@ -224,6 +640,11 @@ about:Toggle("飞行","Toggle",false,function(val)
     end
 )
 
+
+
+
+
+
 about:Button( "飞钥匙布",function(val)
         flying = not flying
 
@@ -232,10 +653,6 @@ about:Button( "飞钥匙布",function(val)
         else
             NOFLY()
         end
-    end
-)
-about:Toggle("自动装备","Toggle",false,function(val)
-        autoequip = val
     end
 )
 about:Toggle("耶稣","Toggle",false,function(val)
@@ -253,11 +670,6 @@ about:Toggle("耶稣","Toggle",false,function(val)
 local UITab2 = win:Tab("『战斗』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)
-
-about:Toggle("杀死光环","Toggle",false,function(val)
-        killaura = val
-    end
-)
 
 -- reach here
 about:Toggle("到达（破碎）","Toggle",false,function(val)
@@ -315,14 +727,6 @@ about:Toggle("到达（破碎）","Toggle",false,function(val)
     end
 )
 
-about:Toggle("瞄准","Toggle",false,function(val)
-        aimbot = val
-    end
-)
-about:Toggle("沉默的目标","Toggle",false,function(val)
-        silentaim = val
-    end
-)
 about:Toggle("墙爆","Toggle",false,function(val)
         if val then
             game.CollectionService:AddTag(game:GetService("Workspace").Map,'RANGED_CASTER_IGNORE_LIST')
@@ -331,10 +735,7 @@ about:Toggle("墙爆","Toggle",false,function(val)
         end
     end
 )
-about:Toggle("没有传播","Toggle",false,function(val)
-        nospread = val
-    end
-)
+
 about:Toggle("没有反冲","Toggle",false,function(val)
         for i,v2 in pairs(getgc(true)) do
             if typeof(v2) == "table" and rawget(v2, "recoilAmount") then
@@ -369,10 +770,6 @@ about:Toggle("没有重力","Toggle",false,function(val)
                 end
             end
         end
-    end
-)
-about:Toggle("即时费用（破碎）","Toggle",false,function(val)
-        instantcharge = val
     end
 )
 about:Toggle("自动拍摄（破碎）","Toggle",false,function(val)
@@ -500,860 +897,72 @@ about:Toggle("击中声音","Toggle",false,function(val)
 local UITab2 = win:Tab("『ESP』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)
-about:Button("ESP颜色",Color3.new(255, 0, 0),function(val)
-        getgenv().TracerColor = val
-        bruh.FillColor = TracerColor
-    end
-)
-about:Toggle("示踪剂","Toggle",false,function(val)
-        tracersenabled = val
-    end
-)
-about:Toggle("文字","Toggle",false,function(val)
-        textenabled = val
-    end
-)
-about:Toggle("框","Toggle",false,function(val)
-        boxesenabled = val
-    end
-)
-
-Players.PlayerRemoving:Connect(function(v)
-    if table.find(players, v.Name) then
-        table.remove(players, players[v.Name])
-    end
-
-    if boxes[v] then
-        boxes[v]:Remove()
-        boxes[v] = nil
-    end
-end)
-about:Connect(function()
-    if killsay then
-        game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(words[math.random(1, #words)])
-    end
+about:Toggle("透视玩家","Toggle",false,function()
+        _G.esp = true
+	esp_unchecked.Visible = false
+	esp_checked.Visible = true
 end)
 
+Combat.Selectable = true
+Combat.Active = true
+Combat.Draggable = true
 
-for i,v in pairs(game.Players:GetPlayers()) do
-    if v ~= Players.LocalPlayer then
-        table.insert(players, v.Name)
-        if v.Character then
-            local line = Drawing.new("Line")
-            line.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
-            line.Color = TracerColor
-            line.Thickness = 2
-            lines[v] = line
-    
-            local text = Drawing.new("Text")
-            text.Text = v.Name
-            text.Size = 20
-            text.Outline = true
-            text.OutlineColor = Color3.new(0,0,0)        
-            text.Center = true
-            texts[v] = text
+Farming.Selectable = true
+Farming.Active = true
+Farming.Draggable = true
 
-            local box = Drawing.new("Square")
-            box.Thickness = 1
-            box.Filled = false
-            box.Visible = false
-            box.ZIndex = 50
-            boxes[v] = box
-    
-            local boxoutline = Drawing.new("Square")
-            boxoutline.Visible = false
-            boxoutline.Thickness = 2
-            boxoutline.Filled = false
-            boxoutline.ZIndex = 1
-            boxoutlines[v] = boxoutline
-    
-            local healthbaroutline = Drawing.new("Square")
-            healthbaroutline.Visible = false
-            healthbaroutline.Filled = true
-            healthbaroutline.Thickness = 2
-            healthbaroutline.ZIndex = 1
-            healthbaroutlines[v] = healthbaroutline
-    
-            local healthbar = Drawing.new("Square")
-            healthbar.Visible = false
-            healthbar.Filled = true
-            healthbar.ZIndex = 50
-            healthbars[v] = healthbar
-        end
-        v.CharacterAdded:Connect(function()
-            local line = Drawing.new("Line")
-            line.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
-            line.Color = TracerColor
-            line.Thickness = 2
-            lines[v] = line
-    
-            local text = Drawing.new("Text")
-            text.Text = v.Name
-            text.Size = 20
-            text.Outline = true
-            text.OutlineColor = Color3.new(0,0,0)        
-            text.Center = true
-            texts[v] = text
-        end)
-        v.CharacterRemoving:Connect(function()
-            lines[v]:Remove()
-            lines[v] = nil
-            texts[v]:Remove()
-            texts[v] = nil
-        end)
-    end
+Misc.Selectable = true
+Misc.Active = true
+Misc.Draggable = true
+
+Visual.Selectable = true
+Visual.Active = true
+Visual.Draggable = true
+
+local UserInputService = game:GetService("UserInputService")
+
+local function IsShiftKeyDown()
+	return UserInputService:IsKeyDown(Enum.KeyCode.RightShift)
 end
 
-Players.PlayerAdded:Connect(function(v)
-    table.insert(players, v.Name)
-    v.CharacterAdded:Connect(function()
-        local line = Drawing.new("Line")
-        line.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
-        line.Color = TracerColor
-        line.Thickness = 2
-        lines[v] = line
-
-        local text = Drawing.new("Text")
-        text.Text = v.Name
-        text.Size = 20
-        text.Outline = true
-        text.OutlineColor = Color3.new(0,0,0)
-        text.Center = true
-        texts[v] = text
-
-        if v ~= Players.LocalPlayer and not boxes[v] then
-            -- not setting the position rn because it would be kinda useless
-            local box = Drawing.new("Square")
-            box.Thickness = 1
-            box.Filled = false
-            box.Visible = false
-            boxes[v] = box
-
-            local boxoutline = Drawing.new("Square")
-            boxoutline.Visible = false
-            boxoutline.Thickness = 2
-            boxoutline.Filled = false
-            boxoutline.ZIndex = 1
-            boxoutlines[v] = boxoutline
-    
-            local healthbaroutline = Drawing.new("Square")
-            healthbaroutline.Visible = false
-            healthbaroutline.Filled = true
-            healthbaroutline.Thickness = 2
-            healthbaroutline.ZIndex = 1
-            healthbaroutlines[v] = healthbaroutline
-    
-            local healthbar = Drawing.new("Square")
-            healthbar.Visible = false
-            healthbar.Filled = true
-            healthbar.ZIndex = 50
-            healthbars[v] = healthbar
-        end
-    end)
-
-    v.CharacterRemoving:Connect(function()
-        lines[v]:Remove()
-        lines[v] = nil
-        texts[v]:Remove()
-        texts[v] = nil
-    end)
-end)
-
-
-mouse.KeyDown:Connect(function(v)
-    if infjump and v == " " then
-        Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):ChangeState(3)
-    end
-end)
-
-UserInputService.InputBegan:Connect(function(v)
-    if v.UserInputType == Enum.UserInputType.MouseButton2 then
-        holdingm2 = true
-        retard = getClosestToMouse()
-    end
-end)
-
-UserInputService.InputEnded:Connect(function(v)
-    if v.UserInputType == Enum.UserInputType.MouseButton2 then
-        holdingm2 = false
-        aimbotLocked = false
-        UserInputService.MouseBehavior = Enum.MouseBehavior.Default
-    end
-end)
-local bee
-bee = workspace.EffectsJunk.ChildAdded:Connect(function(p)
-    if Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") == nil then
-        shot = false
-        return
-    end
-    local Tool = Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
-    if Tool:FindFirstChild("ClientAmmo") == nil then
-        shot = false
-        return
-    end
-    if shot and p:IsA("MeshPart") then
-        ARROW = p
-        Instance.new("SelectionBox",p).Adornee = p
-        shot = false
-        print("arrow var set to arrow part")
-    end
-end)
-
-
-for i,v in pairs(getgc(true)) do
-    if typeof(v) == "table" and rawget(v,"shoot") then
-        local Old = v.shoot
-        v.shoot = function(tbl)
-            shot = true
-            arrowsshooted = tbl.shotIdx
-            closest = getClosestToMouse()
-            return Old(tbl)
-        end
-    end
-    if typeof(v) == "table" and rawget(v,"calculateFireDirection") then
-        old = v.calculateFireDirection
-        v.calculateFireDirection = function(p3,p4,p5,p6)
-            local Tool = Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
-            if Tool:FindFirstChild("ClientAmmo") == nil then
-                return old(p3,p4,p5,p6)
-            end
-            if nospread then
-                p4 = 0
-                p5 = 0
-            end
-            if silentaim and shot then
-                local closesta = getClosestToMouse()
-                -- funny prediction (kinda shit lmao)
-                local whereHeGonnaBe = closesta.Character.Head.CFrame + (closesta.Character.Head.Velocity * 0.19 + Vector3.new(0, .1, 0))
-                return (CFrame.lookAt(Tool.Contents.Handle.FirePoint.WorldCFrame.Position, whereHeGonnaBe.Position)).LookVector * 30;
-            end
-            return old(p3,p4,p5,p6)
-        end
-    end
+local function IsCtrlKeyDown()
+	return UserInputService:IsKeyDown(Enum.KeyCode.RightControl)
 end
 
+local function IsAltKeyDown()
+	return UserInputService:IsKeyDown(Enum.KeyCode.RightAlt)
+end
 
-task.spawn(function()
-    while task.wait(KillAuraHitCooldown) do
-        -- ty len for the arrow redirection
-        -- really basic kill aura
-        -- lags alot but works most of the time
-        -- ty len
-        if killaura then
-            pcall(function()
-                table.foreach(Players.LocalPlayer.Backpack:GetChildren(), function(i,v)
-                    if v:IsA("Tool") and v:FindFirstChild("Hitboxes") then
-                        weapon = v
-                    end
-                end)
-                local c_player = getClosest()
-                if c_player.Character:FindFirstChild("SemiTransparentShield").Transparency == 1 then
-                    swingremote:FireServer(weapon, 1)
-                    hitremote:FireServer(weapon,c_player.Character:FindFirstChild("HumanoidRootPart"),weapon.Hitboxes.Hitbox,c_player.Character:FindFirstChild("HumanoidRootPart").Position)
-                    hitremote:FireServer(weapon,c_player.Character:FindFirstChild("HumanoidRootPart"),weapon.Hitboxes.Hitbox,c_player.Character:FindFirstChild("HumanoidRootPart").Position)
-                end
-            end)
-        end
+local function IsJKeyDown()
+	return UserInputService:IsKeyDown(Enum.KeyCode.J)
+end
 
-        -- silent aim pog
+local function IsKKeyDown()
+	return UserInputService:IsKeyDown(Enum.KeyCode.K)
+end
 
-        if silentaim then
-            pcall(function()
-                local bow = Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
-                if closest then
-                    bruh.Adornee = getClosestToMouse().Character
-                end
-                if ARROW then
-                    if closest then
-                        if (ARROW.Position - closest.Character.HumanoidRootPart.Position).Magnitude <= 15 then
-                            if silentaimhitchance == 100 then
-                                firehit(closest.Character,ARROW)
-                                ARROW = nil
-                                shot = false
-                                print("hit them (i think)")
-                            else
-                                local didIHitThat = calculateArrowHitChance(silentaimhitchance)
-                                if didIHitThat then
-                                    firehit(closest.Character,ARROW)
-                                    ARROW = nil
-                                    shot = false
-                                    print("hit them (i think)")
-                                end
-                            end
-                        end
-                    end
-                end
-            end)
-        end
-    end
-end)
+local function IsDelKeyDown()
+	return UserInputService:IsKeyDown(Enum.KeyCode.Delete)
+end
 
--- the main loop for shit
-task.spawn(function()
-    RunService.Stepped:Connect(function()
+local function IsPgdKeyDown()
+	return UserInputService:IsKeyDown(Enum.KeyCode.PageDown)
+end
 
-        if Walkspeedenabled then
-            if not UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
-                Players.LocalPlayer.Character:WaitForChild("Humanoid").Walkspeed = Walkspeed
-            else
-                Players.LocalPlayer.Character:WaitForChild("Humanoid").Walkspeed = Walkspeed + 10.56
-            end
-        end
-                
-        if jumppowerenabled then
-            Players.LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = jumppower
-        end
-    
-
-
-        if autospawn and Players.LocalPlayer.PlayerGui.RoactUI:FindFirstChild("MainMenu") then
-            keypress(0x20)
-            keyrelease(0x20)
-        end
-    
-        -- really fuckin basic stomp aura but it works :shrug:
-        if stompaura then
-            for i,v in pairs(Players:GetPlayers()) do
-                if v ~= Players.LocalPlayer and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("Humanoid").Health <= 15 then
-                    if (v.Character.HumanoidRootPart.Position - Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 4 then
-                        keypress(0x51)
-                        keyrelease(0x51)
-                    end
-                end
-            end
-        end
-        pcall(function()
-            if aimbot and holdingm2 then
-                aimbotLocked = true
-                if aimbotLocked and retard ~= nil then
-                    -- took this from some aimbot script (prediction is hard)
-                    local whereHeGonnaBe = retard.Character.HumanoidRootPart.CFrame + (retard.Character.HumanoidRootPart.Velocity * 0.19 + Vector3.new(0, .1, 0))
-                    workspace.CurrentCamera.CFrame = CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, whereHeGonnaBe.Position)
-                    UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
-                end
-            end
-        end)
-
-        if hidename then
-            getRemote("UpdateIsCrouching"):FireServer(true)
-        else
-            getRemote("UpdateIsCrouching"):FireServer(false)
-        end
-
-        pcall(
-            function()
-                for i, v in pairs(Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v:IsA("Tool") then
-                        if v:FindFirstChild("Hitboxes") ~= nil then
-                            if autoequip and not Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
-                                v.Parent = Players.LocalPlayer.Character
-                            end
-                        end
-                    end
-                end
-            end
-        )
-    
-        if noclip then
-            for i,v in pairs(Players.LocalPlayer.Character:GetDescendants()) do
-                if v:IsA("BasePart") then
-                    v.CanCollide = false
-                end
-            end
-        end
-        
-        if tracersenabled then
-            for player,line in pairs(lines) do
-                if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                    local pos,visible = workspace.CurrentCamera:WorldToViewportPoint(player.Character.HumanoidRootPart.Position)
-                    line.Color = TracerColor
-                    line.To = Vector2.new(pos.X, pos.Y)
-                    -- line.Color = player.Character.Torso.Color
-                    line.Visible = visible
-                else
-                    line.Visible = false
-                end
-            end
-        else
-            for player,line in pairs(lines) do
-                line.Visible = false
-            end
-        end
-    
-        if textenabled then
-            for player,text in pairs(texts) do
-                if player.Character and player.Character:FindFirstChild("Head") then
-                    local head, HeadVisible = workspace.CurrentCamera:WorldToViewportPoint(player.Character.Head.Position)
-                    text.Position = Vector2.new(head.X, head.Y - 28)
-                    text.Color = TracerColor
-                    text.Visible = HeadVisible
-                else
-                    text.Visible = false
-                end
-            end
-        else
-            for player,text in pairs(texts) do
-                text.Visible = false
-            end
-        end
-
-
-        -- worst esp i have written
-        -- 100% could be written better but idc nigga
-        if boxesenabled then
-            for i,v in pairs(Players:GetPlayers()) do
-                if v ~= Players.LocalPlayer and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 then
-                    local hrp, visible = workspace.CurrentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
-                    local head, headvisible = workspace.CurrentCamera:WorldToViewportPoint(v.Character.Head.Position + Vector3.new(0, 1, 0))
-                    local leg, legvisible = workspace.CurrentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position - Vector3.new(0,3,0))
-                    local X = 2000 / hrp.Z
-                    local Y = head.Y - leg.Y
-                    boxes[v].Visible = visible
-                    boxoutlines[v].Visible = visible
-                    healthbars[v].Visible = visible
-                    healthbaroutlines[v].Visible = visible
-        
-                    if visible then
-                        boxes[v].Position = Vector2.new(hrp.X - boxes[v].Size.X / 2, hrp.Y - boxes[v].Size.Y / 2)
-                        boxes[v].Size = Vector2.new(X, Y)
-                        boxes[v].Color = TracerColor
-                        boxoutlines[v].Position = Vector2.new(hrp.X - boxes[v].Size.X / 2, hrp.Y - boxes[v].Size.Y / 2)
-                        boxoutlines[v].Size = Vector2.new(X, Y)
-                        healthbaroutlines[v].Size = Vector2.new(3, Y)
-                        healthbaroutlines[v].Position = Vector2.new(hrp.X - boxes[v].Size.X / 2, hrp.Y - boxes[v].Size.Y / 2) - Vector2.new(6, 0)
-                        healthbars[v].Color = Color3.fromRGB(173, 0, 0):Lerp(Color3.fromRGB(0, 160, 0), v.Character:FindFirstChild("Humanoid").Health/v.Character:FindFirstChild("Humanoid").MaxHealth)
-                        healthbars[v].Size = Vector2.new(2, (-healthbaroutlines[v].Size.Y - 2) * (v.Character:FindFirstChild("Humanoid").Health/v.Character:FindFirstChild("Humanoid").MaxHealth))
-                        healthbars[v].Position = healthbaroutlines[v].Position + Vector2.new(1, -1 + healthbaroutlines[v].Size.Y)
-                    end
-                else
-                    if v ~= Players.LocalPlayer then
-                        boxes[v].Visible = false
-                        boxoutlines[v].Visible = false
-                        healthbars[v].Visible = false
-                        healthbaroutlines[v].Visible = false
-                    end
-                end
-            end
-        else
-            for i,v in pairs(boxes) do
-                v.Visible = false
-            end
-            for i,v in pairs(boxoutlines) do
-                v.Visible = false
-            end
-            for i,v in pairs(healthbars) do
-                v.Visible = false
-            end
-            for i,v in pairs(healthbaroutlines) do
-                v.Visible = false
-            end
-        end
-       
-
-        local Tool = Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
-        if Tool ~= nil and Tool:FindFirstChild("ClientAmmo") == nil then
-            return
-        end
-
-        if Players.LocalPlayer.Character then
-            if Players.LocalPlayer.Character:FindFirstChild('Longbow') and instantcharge then
-                for i,v in pairs(getconnections(Tool.ChargeProgressClient:GetPropertyChangedSignal("Value"))) do
-                    v:Disable()
-                end
-                Tool.ChargeProgressClient.Value = 1
-            end
-        end
-    end)
-end)
-
-local methodHook
-methodHook = hookmetamethod(game, "__namecall", function(self, ...)
-    if not checkcaller() and getnamecallmethod() == "FireServer" and antidamage and tostring(self) == "GotHitRE" then
-        return
-    elseif not checkcaller() and getnamecallmethod() == "FireServer" and nofall and self.Name == fallremote.Name then
-        return
-    elseif (getnamecallmethod() == "Kick" or getnamecallmethod() == "kick") and self == game.Players.LocalPlayer then
-        return
-    end
-    return methodHook(self, ...)
-end)
-
-local StarterGui = game:GetService("StarterGui")
-
-local Notifications = {
-	"学分到Gus和超级罪",
-	
-}
-
-local TimeBetweenNotifications = 9000000000000
-
-while true do
-	for i = 1, #Notifications do
-		local Notification = Notifications[i]
-		
-		StarterGui:SetCore("SendNotification", {
-			Title = "frkfx",
-			Text = Notification,
-			Duration = 10
-		})
-		
-		wait(TimeBetweenNotifications)
+local function Input(input, gameProcessedEvent)
+	if IsShiftKeyDown() then
+		if Combat.Visible == true then
+			Combat.Visible = false
+			Farming.Visible = false
+			Misc.Visible = false
+			Visual.Visible = false
+		else
+			Combat.Visible = true
+			Farming.Visible = true
+			Misc.Visible = true
+			Visual.Visible = true
+		end
 	end
 end
-if KillAuraHitCooldown == nil then
-    getgenv().KillAuraHitCooldown = 0.2
-end
 
-if SilentAimHitPart == nil then
-    getgenv().SilentAimHitPart = "Head"
-end
-
-if is_sirhurt_closure then
-    Players.LocalPlayer:Kick("imagine using sirhurt")
-end
-
-
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
-local mouse = Players.LocalPlayer:GetMouse()
-local nevermore_modules = rawget(require(game.ReplicatedStorage.Framework.Nevermore), "_lookupTable")
-local network = rawget(nevermore_modules, "Network") -- network is the place where the remote handling shit is
-local remotes_table = getupvalue(getsenv(network).GetEventHandler, 1)
-local events_table = getupvalue(getsenv(network).GetFunctionHandler, 1)
-local remotes = {}
-local lines = {}
-local texts = {}
-local players = {}
-local boxes = {}
-local boxoutlines = {}
-local healthbars = {}
-local healthbaroutlines = {}
-local words = {
-    "ez",
-    "get good: get .gg/EzDK4AD5Yj",
-    "trash",
-    "touch grass",
-    "retard",
-    "i love among us",
-    "the impostor?!?!?!",
-    "grass? whats that",
-    "having issues playing the game? get .gg/EzDK4AD5Yj",
-    "is your dad spiderman? because he far from home",
-    "do you ever have problems with light users parrying your ds???",
-    "how are you that bad??🤣🤣😂🤣🤣",
-    "EZ EZ EZ EZ EZ",
-    "dont even bother insulting me 🤣🤣😂",
-    "this script was brought to you by raid shadow legends!!",
-    "do you like cheese?",
-    "are you even trying to kill me???",
-    "get rekt noobie",
-    "go get .gg/EzDK4AD5Yj now",
-    "imagine dying",
-    ".gg/EzDK4AD5Yj on top (not really)",
-    "L Bozo",
-    "clapped",
-    "nothing personel kid",
-    "damn bro you got the whole squad laughing 😂😂🤣",
-    "imagine targetting someone. but get clapped afterwards",
-    "according to the rules. You should not be hacking because it can get you banned 🤓🤓🤓",
-    "nerds be like: OMG LOOK AT THAT HACKER!!! LET'S GET HIM!!!🤓🤓🤓",
-    "why am i still writing this? -Probably ZaneIs",
-    "haha got you!!!",
-    "how are you that bad??🤣😂",
-    "нуб бозо",
-    "my reaction to that information 😐",
-    "OmG nO wAY a hACker!!!",
-    "Super Idol的笑容",
-    "goddamn i'm still writing -Probably ZaneIs",
-    "have you ever heard the hitgame AmongUs???",
-    "fr?",
-    'skill issue',
-    "touch grass losers",
-    "this move is called 'Devious Lick'",
-    "*Gorilla Sounds*",
-    "What's up guys it's quandale dingle here.",
-    "Bro got fake Jordans 💀",
-    "frkfx is so cool",
-    "Turi ip ip",
-    "Say goodbye to your Kneecaps"
-}
-
-
-getgenv().hitremote = nil
-getgenv().swingremote = nil
-getgenv().fallremote = nil
-getgenv().ragdollremote = nil
-
-local hitpart = SilentAimHitPart
-local ARROW
-local bruh = Instance.new("Highlight",game.CoreGui)
-local closest
-local flying
-local holdingm2 = false
-local aimbotLocked
-local retard
-local shot = false
-local weapon
-local arrowsshooted = 1
-
-
--- will add all of these random lines into a config table later (maybe)
-local Walkspeed = 16
-local infjump
-local antidamage
-local autospawn
-local tracersenabled
-local nofall
-local textenabled
-local noclip
-local stompaura
-local jumppower = 50
-local killsay = false
-local killaura = false
-local hidename = false
-local aimbot
-local silentaim
-local autoequip = false
-local nospread
-local jumppowerenabled = false
-local Walkspeedenabled = false
-local silentaimhitchance = 100 -- in percents
-local instantcharge = false
-local boxesenabled = false
-
-getgenv().TracerColor = Color3.fromRGB(99, 13, 197)
-
-
-for i,v in pairs(getgc(true)) do
-    if typeof(v) == "table" and rawget(v, "kick") then
-        v.kick =  function()
-            return
-        end
-    end
-
-    if typeof(v) == 'table' and rawget(v, 'getIsBodyMoverCreatedByGame') then
-        v.getIsBodyMoverCreatedByGame = function(among)
-            return true
-        end
-   end
-   if typeof(v) == "table" and rawget(v, "randomDelayKick") then
-        v.randomDelayKick = function()
-            return wait(9e9)
-        end
-    end
-end
-
-table.foreach(remotes_table, function(i,v)
-    if rawget(v, "Remote") then
-        remotes[rawget(v, "Remote")] = i
-    end
-end)
-
-table.foreach(events_table, function(i,v)
-    if rawget(v, "Remote") then
-        remotes[rawget(v, "Remote")] = i
-    end
-end)
-
-
-
-local pog
-pog = hookmetamethod(game, "__index", function(self, key)
-    if (key == "Name" or key == "name") and remotes[self] then
-       return remotes[self]
-    end
-
-    return pog(self, key)
-end)
-
-
-local function getRemote(name)
-    for i,v in pairs(remotes) do
-        if i.Name == name then
-            return i
-        end
-    end
-end
-
-
-local function getClosest()
-    local hrp = Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
-    local closest_distance = math.huge
-    local closestnigger
-
-    for i,v in pairs(game.Players:GetPlayers()) do
-        if v.Character ~= nil and v ~= Players.LocalPlayer and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v.Character:FindFirstChild("Humanoid").Health > 0 then
-            local plr_pos = v.Character.HumanoidRootPart.Position
-            local plr_distance = (hrp - plr_pos).Magnitude
-    
-            if plr_distance < closest_distance then
-                closest_distance = plr_distance
-                closestnigger = v
-            end
-        end
-    end
-
-    return closestnigger
-end
-
-
-local function getClosestToMouse()
-    local player, nearestDistance = nil, math.huge
-    for i,v in pairs(Players:GetPlayers()) do
-        if v ~= Players.LocalPlayer and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and v.Character:FindFirstChild("HumanoidRootPart") then
-            local root, visible = workspace.CurrentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
-            if visible then
-                local distance = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(root.X, root.Y)).Magnitude
-
-                if distance < nearestDistance then
-                    nearestDistance = distance
-                    player = v
-                end
-            end
-        end
-    end
-    return player
-end
-
-
-local function calculateArrowHitChance(v)
-
-    local chance = math.floor(Random.new().NextNumber(Random.new(),0,1) * 100) / 100
-    return chance <= math.floor(v) / 100
-end
-
-FLYING = false
-iyflyspeed = 1
-vehicleflyspeed = 1
-
-function sFLY(vfly)
-    repeat wait() until Players.LocalPlayer and Players.LocalPlayer.Character and Players.LocalPlayer.Character.HumanoidRootPart and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-    repeat wait() until mouse
-    if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
-
-    local T = Players.LocalPlayer.Character.HumanoidRootPart
-    local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
-    local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
-    local SPEED = 0
-
-    local function FLY()
-        FLYING = true
-        local BG = Instance.new('BodyGyro')
-        local BV = Instance.new('BodyVelocity')
-        BG.P = 9e4
-        BG.Parent = T
-        BV.Parent = T
-        BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-        BG.cframe = T.CFrame
-        BV.velocity = Vector3.new(0, 0, 0)
-        BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
-        task.spawn(function()
-            repeat wait()
-                if not vfly and Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
-                    Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
-                end
-                if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
-                    SPEED = 50
-                elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0) and SPEED ~= 0 then
-                    SPEED = 0
-                end
-                if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0 then
-                    BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-                    lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
-                elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and (CONTROL.Q + CONTROL.E) == 0 and SPEED ~= 0 then
-                    BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-                else
-                    BV.velocity = Vector3.new(0, 0, 0)
-                end
-                BG.cframe = workspace.CurrentCamera.CoordinateFrame
-            until not FLYING
-            CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
-            lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
-            SPEED = 0
-            BG:Destroy()
-            BV:Destroy()
-            if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
-                Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
-            end
-        end)
-    end
-    flyKeyDown = mouse.KeyDown:Connect(function(KEY)
-        if KEY:lower() == 'w' then
-            CONTROL.F = (vfly and vehicleflyspeed or iyflyspeed)
-        elseif KEY:lower() == 's' then
-            CONTROL.B = - (vfly and vehicleflyspeed or iyflyspeed)
-        elseif KEY:lower() == 'a' then
-            CONTROL.L = - (vfly and vehicleflyspeed or iyflyspeed)
-        elseif KEY:lower() == 'd' then 
-            CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
-        elseif QEfly and KEY:lower() == 'e' then
-            CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
-        elseif QEfly and KEY:lower() == 'q' then
-            CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
-        end
-        pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
-    end)
-    flyKeyUp = mouse.KeyUp:Connect(function(KEY)
-        if KEY:lower() == 'w' then
-            CONTROL.F = 0
-        elseif KEY:lower() == 's' then
-            CONTROL.B = 0
-        elseif KEY:lower() == 'a' then
-            CONTROL.L = 0
-        elseif KEY:lower() == 'd' then
-            CONTROL.R = 0
-        elseif KEY:lower() == 'e' then
-            CONTROL.Q = 0
-        elseif KEY:lower() == 'q' then
-            CONTROL.E = 0
-        end
-    end)
-    FLY()
-end
-
-function NOFLY()
-    FLYING = false
-    if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
-    if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
-        Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
-    end
-    pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
-end
-
-
-firehit = function(character,arrow)
-    local fakepos = character[hitpart].Position + Vector3.new(math.random(1,5),math.random(1,5),math.random(1,5))
-    local args = {
-        [1] = Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"),
-        [2] = character.Head,
-        [3] = fakepos,
-        [4] = character.Head.CFrame:ToObjectSpace(CFrame.new(fakepos)),
-        [5] = fakepos * Vector3.new(math.random(1,5),math.random(1,5),math.random(1,5)),
-        [6] = tostring(arrowsshooted)
-    }
-    getRemote("RangedHit"):FireServer(unpack(args))
-end
-
-getgenv().hitremote = getRemote("MeleeDamage")
-getgenv().swingremote = getRemote("MeleeSwing")
-getgenv().fallremote = getRemote("TakeFallDamage")
-
-for i,v in pairs(getgc(true)) do
-    if typeof(v) == "table" and rawget(v, "connectCharacter") then
-        v.connectCharacter = function(among)
-            return
-        end
-    end
-end
-
-
-task.wait(0.5)
-
-pcall(function()
-    for i = 1,25 do
-        getRemote("StartFastRespawn"):FireServer()
-        getRemote("CompleteFastRespawn"):FireServer()
-        wait()
-    end
-end)
+UserInputService.InputBegan:Connect(Input)
