@@ -1,360 +1,4 @@
-if KillAuraHitCooldown == nil then
-    getgenv().KillAuraHitCooldown = 0.2
-end
 
-if SilentAimHitPart == nil then
-    getgenv().SilentAimHitPart = "Head"
-end
-
-if is_sirhurt_closure then
-    Players.LocalPlayer:Kick("imagine using sirhurt")
-end
-
-
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
-local mouse = Players.LocalPlayer:GetMouse()
-local nevermore_modules = rawget(require(game.ReplicatedStorage.Framework.Nevermore), "_lookupTable")
-local network = rawget(nevermore_modules, "Network") -- network is the place where the remote handling shit is
-local remotes_table = getupvalue(getsenv(network).GetEventHandler, 1)
-local events_table = getupvalue(getsenv(network).GetFunctionHandler, 1)
-local remotes = {}
-local lines = {}
-local texts = {}
-local players = {}
-local boxes = {}
-local boxoutlines = {}
-local healthbars = {}
-local healthbaroutlines = {}
-local words = {
-    "ez",
-    "get good: get .gg/EzDK4AD5Yj",
-    "trash",
-    "touch grass",
-    "retard",
-    "i love among us",
-    "the impostor?!?!?!",
-    "grass? whats that",
-    "having issues playing the game? get .gg/EzDK4AD5Yj",
-    "is your dad spiderman? because he far from home",
-    "do you ever have problems with light users parrying your ds???",
-    "how are you that bad??🤣🤣😂🤣🤣",
-    "EZ EZ EZ EZ EZ",
-    "dont even bother insulting me 🤣🤣😂",
-    "this script was brought to you by raid shadow legends!!",
-    "do you like cheese?",
-    "are you even trying to kill me???",
-    "get rekt noobie",
-    "go get .gg/EzDK4AD5Yj now",
-    "imagine dying",
-    ".gg/EzDK4AD5Yj on top (not really)",
-    "L Bozo",
-    "clapped",
-    "nothing personel kid",
-    "damn bro you got the whole squad laughing 😂😂🤣",
-    "imagine targetting someone. but get clapped afterwards",
-    "according to the rules. You should not be hacking because it can get you banned 🤓🤓🤓",
-    "nerds be like: OMG LOOK AT THAT HACKER!!! LET'S GET HIM!!!🤓🤓🤓",
-    "why am i still writing this? -Probably ZaneIs",
-    "haha got you!!!",
-    "how are you that bad??🤣😂",
-    "нуб бозо",
-    "my reaction to that information 😐",
-    "OmG nO wAY a hACker!!!",
-    "Super Idol的笑容",
-    "goddamn i'm still writing -Probably ZaneIs",
-    "have you ever heard the hitgame AmongUs???",
-    "fr?",
-    'skill issue',
-    "touch grass losers",
-    "this move is called 'Devious Lick'",
-    "*Gorilla Sounds*",
-    "What's up guys it's quandale dingle here.",
-    "Bro got fake Jordans 💀",
-    "frkfx is so cool",
-    "Turi ip ip",
-    "Say goodbye to your Kneecaps"
-}
-
-
-getgenv().hitremote = nil
-getgenv().swingremote = nil
-getgenv().fallremote = nil
-getgenv().ragdollremote = nil
-
-local hitpart = SilentAimHitPart
-local ARROW
-local bruh = Instance.new("Highlight",game.CoreGui)
-local closest
-local flying
-local holdingm2 = false
-local aimbotLocked
-local retard
-local shot = false
-local weapon
-local arrowsshooted = 1
-
-
--- will add all of these random lines into a config table later (maybe)
-local Walkspeed = 16
-local infjump
-local antidamage
-local autospawn
-local tracersenabled
-local nofall
-local textenabled
-local noclip
-local stompaura
-local jumppower = 50
-local killsay = false
-local killaura = false
-local hidename = false
-local aimbot
-local silentaim
-local autoequip = false
-local nospread
-local jumppowerenabled = false
-local Walkspeedenabled = false
-local silentaimhitchance = 100 -- in percents
-local instantcharge = false
-local boxesenabled = false
-
-getgenv().TracerColor = Color3.fromRGB(99, 13, 197)
-
-
-for i,v in pairs(getgc(true)) do
-    if typeof(v) == "table" and rawget(v, "kick") then
-        v.kick =  function()
-            return
-        end
-    end
-
-    if typeof(v) == 'table' and rawget(v, 'getIsBodyMoverCreatedByGame') then
-        v.getIsBodyMoverCreatedByGame = function(among)
-            return true
-        end
-   end
-   if typeof(v) == "table" and rawget(v, "randomDelayKick") then
-        v.randomDelayKick = function()
-            return wait(9e9)
-        end
-    end
-end
-
-table.foreach(remotes_table, function(i,v)
-    if rawget(v, "Remote") then
-        remotes[rawget(v, "Remote")] = i
-    end
-end)
-
-table.foreach(events_table, function(i,v)
-    if rawget(v, "Remote") then
-        remotes[rawget(v, "Remote")] = i
-    end
-end)
-
-
-
-local pog
-pog = hookmetamethod(game, "__index", function(self, key)
-    if (key == "Name" or key == "name") and remotes[self] then
-       return remotes[self]
-    end
-
-    return pog(self, key)
-end)
-
-
-local function getRemote(name)
-    for i,v in pairs(remotes) do
-        if i.Name == name then
-            return i
-        end
-    end
-end
-
-
-local function getClosest()
-    local hrp = Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
-    local closest_distance = math.huge
-    local closestnigger
-
-    for i,v in pairs(game.Players:GetPlayers()) do
-        if v.Character ~= nil and v ~= Players.LocalPlayer and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v.Character:FindFirstChild("Humanoid").Health > 0 then
-            local plr_pos = v.Character.HumanoidRootPart.Position
-            local plr_distance = (hrp - plr_pos).Magnitude
-    
-            if plr_distance < closest_distance then
-                closest_distance = plr_distance
-                closestnigger = v
-            end
-        end
-    end
-
-    return closestnigger
-end
-
-
-local function getClosestToMouse()
-    local player, nearestDistance = nil, math.huge
-    for i,v in pairs(Players:GetPlayers()) do
-        if v ~= Players.LocalPlayer and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and v.Character:FindFirstChild("HumanoidRootPart") then
-            local root, visible = workspace.CurrentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
-            if visible then
-                local distance = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(root.X, root.Y)).Magnitude
-
-                if distance < nearestDistance then
-                    nearestDistance = distance
-                    player = v
-                end
-            end
-        end
-    end
-    return player
-end
-
-
-local function calculateArrowHitChance(v)
-
-    local chance = math.floor(Random.new().NextNumber(Random.new(),0,1) * 100) / 100
-    return chance <= math.floor(v) / 100
-end
-
-FLYING = false
-iyflyspeed = 1
-vehicleflyspeed = 1
-
-function sFLY(vfly)
-    repeat wait() until Players.LocalPlayer and Players.LocalPlayer.Character and Players.LocalPlayer.Character.HumanoidRootPart and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-    repeat wait() until mouse
-    if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
-
-    local T = Players.LocalPlayer.Character.HumanoidRootPart
-    local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
-    local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
-    local SPEED = 0
-
-    local function FLY()
-        FLYING = true
-        local BG = Instance.new('BodyGyro')
-        local BV = Instance.new('BodyVelocity')
-        BG.P = 9e4
-        BG.Parent = T
-        BV.Parent = T
-        BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-        BG.cframe = T.CFrame
-        BV.velocity = Vector3.new(0, 0, 0)
-        BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
-        task.spawn(function()
-            repeat wait()
-                if not vfly and Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
-                    Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
-                end
-                if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
-                    SPEED = 50
-                elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0) and SPEED ~= 0 then
-                    SPEED = 0
-                end
-                if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0 then
-                    BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-                    lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
-                elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and (CONTROL.Q + CONTROL.E) == 0 and SPEED ~= 0 then
-                    BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-                else
-                    BV.velocity = Vector3.new(0, 0, 0)
-                end
-                BG.cframe = workspace.CurrentCamera.CoordinateFrame
-            until not FLYING
-            CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
-            lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
-            SPEED = 0
-            BG:Destroy()
-            BV:Destroy()
-            if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
-                Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
-            end
-        end)
-    end
-    flyKeyDown = mouse.KeyDown:Connect(function(KEY)
-        if KEY:lower() == 'w' then
-            CONTROL.F = (vfly and vehicleflyspeed or iyflyspeed)
-        elseif KEY:lower() == 's' then
-            CONTROL.B = - (vfly and vehicleflyspeed or iyflyspeed)
-        elseif KEY:lower() == 'a' then
-            CONTROL.L = - (vfly and vehicleflyspeed or iyflyspeed)
-        elseif KEY:lower() == 'd' then 
-            CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
-        elseif QEfly and KEY:lower() == 'e' then
-            CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
-        elseif QEfly and KEY:lower() == 'q' then
-            CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
-        end
-        pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
-    end)
-    flyKeyUp = mouse.KeyUp:Connect(function(KEY)
-        if KEY:lower() == 'w' then
-            CONTROL.F = 0
-        elseif KEY:lower() == 's' then
-            CONTROL.B = 0
-        elseif KEY:lower() == 'a' then
-            CONTROL.L = 0
-        elseif KEY:lower() == 'd' then
-            CONTROL.R = 0
-        elseif KEY:lower() == 'e' then
-            CONTROL.Q = 0
-        elseif KEY:lower() == 'q' then
-            CONTROL.E = 0
-        end
-    end)
-    FLY()
-end
-
-function NOFLY()
-    FLYING = false
-    if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
-    if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
-        Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
-    end
-    pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
-end
-
-
-firehit = function(character,arrow)
-    local fakepos = character[hitpart].Position + Vector3.new(math.random(1,5),math.random(1,5),math.random(1,5))
-    local args = {
-        [1] = Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"),
-        [2] = character.Head,
-        [3] = fakepos,
-        [4] = character.Head.CFrame:ToObjectSpace(CFrame.new(fakepos)),
-        [5] = fakepos * Vector3.new(math.random(1,5),math.random(1,5),math.random(1,5)),
-        [6] = tostring(arrowsshooted)
-    }
-    getRemote("RangedHit"):FireServer(unpack(args))
-end
-
-getgenv().hitremote = getRemote("MeleeDamage")
-getgenv().swingremote = getRemote("MeleeSwing")
-getgenv().fallremote = getRemote("TakeFallDamage")
-
-for i,v in pairs(getgc(true)) do
-    if typeof(v) == "table" and rawget(v, "connectCharacter") then
-        v.connectCharacter = function(among)
-            return
-        end
-    end
-end
-
-
-task.wait(0.5)
-
-pcall(function()
-    for i = 1,25 do
-        getRemote("StartFastRespawn"):FireServer()
-        getRemote("CompleteFastRespawn"):FireServer()
-        wait()
-    end
-end)
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/neilonmacedo153/refs/heads/main/xgoui.txt"))();    
 local win = ui:new("goto战斗战士")
 
@@ -545,32 +189,15 @@ about:Toggle("没有布娃娃","Toggle",false,function(val)
 local UITab2 = win:Tab("『玩家』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)
-about:Toggle("启用","Toggle",false,function(val)
-        walkspeedenabled = val
 
-        if not val then
-            Players.LocalPlayer.Character:WaitForChild("Humanoid").Walkspeed = 16
-        end
-    end
-)
+about:Slider("步行速度", "WalkSpeed", game.Players.LocalPlayer.Character.Humanoid.WalkSpeed, 16, 400, false, function(Speed)
+  spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed end end)
+end)
 
-about:Slider("步行速度", 16,16,75,function(v)
-        walkspeed = v
-    end
-)
-about:Toggle("启用","Toggle",false,function(val)
-        jumppowerenabled = val
+about:Slider("跳跃高度", "JumpPower", game.Players.LocalPlayer.Character.Humanoid.JumpPower, 50, 400, false, function(Jump)
+  spawn(function() while task.wait() do game.Players.LocalPlayer.Character.Humanoid.JumpPower = Jump end end)
+end)
 
-        if not val then
-            Players.LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = 50
-        end
-    end
-)
-
-about:Slider("跳跃力量",50,50,200,function(v)
-        jumppower = v
-    end
-)
 about:Toggle("无限跳","Toggle",false,function(val)
         infjump = val
     end
@@ -597,7 +224,7 @@ about:Toggle("飞行","Toggle",false,function(val)
     end
 )
 
-about:Keybind( "飞钥匙布","Enum.KeyCode.K",function(val)
+about:Button( "飞钥匙布",function(val)
         flying = not flying
 
         if flying then
@@ -694,10 +321,6 @@ about:Toggle("瞄准","Toggle",false,function(val)
 )
 about:Toggle("沉默的目标","Toggle",false,function(val)
         silentaim = val
-    end
-)
-about:Slider("击中机会",100,0,100,function(v)
-        silentaimhitchance = v
     end
 )
 about:Toggle("墙爆","Toggle",false,function(val)
@@ -863,13 +486,12 @@ about:Toggle("Fling","Toggle",false,function()
          game.Players.LocalPlayer.Character.HumanoidRootPart.RootJoint.Part0 = nil
     end
 )
-about:Textbox("杀了声音（破碎）","",function(val)
+about:Toggle("启用","Toggle",false,function(val)
         game:GetService("ReplicatedStorage").Shared.Assets.Sounds.KillSound.SoundId = "rbxassetid://"..val
     end
 
 )
-
-about:Textbox({"击中声音（破碎）","", function(val)
+about:Toggle("击中声音","Toggle",false,function(val)
         game:GetService("ReplicatedStorage").Shared.Assets.Sounds.HitmarkerSound.SoundId = "rbxassetid://"..val
      end
 
@@ -1378,3 +1000,360 @@ while true do
 		wait(TimeBetweenNotifications)
 	end
 end
+if KillAuraHitCooldown == nil then
+    getgenv().KillAuraHitCooldown = 0.2
+end
+
+if SilentAimHitPart == nil then
+    getgenv().SilentAimHitPart = "Head"
+end
+
+if is_sirhurt_closure then
+    Players.LocalPlayer:Kick("imagine using sirhurt")
+end
+
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local mouse = Players.LocalPlayer:GetMouse()
+local nevermore_modules = rawget(require(game.ReplicatedStorage.Framework.Nevermore), "_lookupTable")
+local network = rawget(nevermore_modules, "Network") -- network is the place where the remote handling shit is
+local remotes_table = getupvalue(getsenv(network).GetEventHandler, 1)
+local events_table = getupvalue(getsenv(network).GetFunctionHandler, 1)
+local remotes = {}
+local lines = {}
+local texts = {}
+local players = {}
+local boxes = {}
+local boxoutlines = {}
+local healthbars = {}
+local healthbaroutlines = {}
+local words = {
+    "ez",
+    "get good: get .gg/EzDK4AD5Yj",
+    "trash",
+    "touch grass",
+    "retard",
+    "i love among us",
+    "the impostor?!?!?!",
+    "grass? whats that",
+    "having issues playing the game? get .gg/EzDK4AD5Yj",
+    "is your dad spiderman? because he far from home",
+    "do you ever have problems with light users parrying your ds???",
+    "how are you that bad??🤣🤣😂🤣🤣",
+    "EZ EZ EZ EZ EZ",
+    "dont even bother insulting me 🤣🤣😂",
+    "this script was brought to you by raid shadow legends!!",
+    "do you like cheese?",
+    "are you even trying to kill me???",
+    "get rekt noobie",
+    "go get .gg/EzDK4AD5Yj now",
+    "imagine dying",
+    ".gg/EzDK4AD5Yj on top (not really)",
+    "L Bozo",
+    "clapped",
+    "nothing personel kid",
+    "damn bro you got the whole squad laughing 😂😂🤣",
+    "imagine targetting someone. but get clapped afterwards",
+    "according to the rules. You should not be hacking because it can get you banned 🤓🤓🤓",
+    "nerds be like: OMG LOOK AT THAT HACKER!!! LET'S GET HIM!!!🤓🤓🤓",
+    "why am i still writing this? -Probably ZaneIs",
+    "haha got you!!!",
+    "how are you that bad??🤣😂",
+    "нуб бозо",
+    "my reaction to that information 😐",
+    "OmG nO wAY a hACker!!!",
+    "Super Idol的笑容",
+    "goddamn i'm still writing -Probably ZaneIs",
+    "have you ever heard the hitgame AmongUs???",
+    "fr?",
+    'skill issue',
+    "touch grass losers",
+    "this move is called 'Devious Lick'",
+    "*Gorilla Sounds*",
+    "What's up guys it's quandale dingle here.",
+    "Bro got fake Jordans 💀",
+    "frkfx is so cool",
+    "Turi ip ip",
+    "Say goodbye to your Kneecaps"
+}
+
+
+getgenv().hitremote = nil
+getgenv().swingremote = nil
+getgenv().fallremote = nil
+getgenv().ragdollremote = nil
+
+local hitpart = SilentAimHitPart
+local ARROW
+local bruh = Instance.new("Highlight",game.CoreGui)
+local closest
+local flying
+local holdingm2 = false
+local aimbotLocked
+local retard
+local shot = false
+local weapon
+local arrowsshooted = 1
+
+
+-- will add all of these random lines into a config table later (maybe)
+local Walkspeed = 16
+local infjump
+local antidamage
+local autospawn
+local tracersenabled
+local nofall
+local textenabled
+local noclip
+local stompaura
+local jumppower = 50
+local killsay = false
+local killaura = false
+local hidename = false
+local aimbot
+local silentaim
+local autoequip = false
+local nospread
+local jumppowerenabled = false
+local Walkspeedenabled = false
+local silentaimhitchance = 100 -- in percents
+local instantcharge = false
+local boxesenabled = false
+
+getgenv().TracerColor = Color3.fromRGB(99, 13, 197)
+
+
+for i,v in pairs(getgc(true)) do
+    if typeof(v) == "table" and rawget(v, "kick") then
+        v.kick =  function()
+            return
+        end
+    end
+
+    if typeof(v) == 'table' and rawget(v, 'getIsBodyMoverCreatedByGame') then
+        v.getIsBodyMoverCreatedByGame = function(among)
+            return true
+        end
+   end
+   if typeof(v) == "table" and rawget(v, "randomDelayKick") then
+        v.randomDelayKick = function()
+            return wait(9e9)
+        end
+    end
+end
+
+table.foreach(remotes_table, function(i,v)
+    if rawget(v, "Remote") then
+        remotes[rawget(v, "Remote")] = i
+    end
+end)
+
+table.foreach(events_table, function(i,v)
+    if rawget(v, "Remote") then
+        remotes[rawget(v, "Remote")] = i
+    end
+end)
+
+
+
+local pog
+pog = hookmetamethod(game, "__index", function(self, key)
+    if (key == "Name" or key == "name") and remotes[self] then
+       return remotes[self]
+    end
+
+    return pog(self, key)
+end)
+
+
+local function getRemote(name)
+    for i,v in pairs(remotes) do
+        if i.Name == name then
+            return i
+        end
+    end
+end
+
+
+local function getClosest()
+    local hrp = Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
+    local closest_distance = math.huge
+    local closestnigger
+
+    for i,v in pairs(game.Players:GetPlayers()) do
+        if v.Character ~= nil and v ~= Players.LocalPlayer and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v.Character:FindFirstChild("Humanoid").Health > 0 then
+            local plr_pos = v.Character.HumanoidRootPart.Position
+            local plr_distance = (hrp - plr_pos).Magnitude
+    
+            if plr_distance < closest_distance then
+                closest_distance = plr_distance
+                closestnigger = v
+            end
+        end
+    end
+
+    return closestnigger
+end
+
+
+local function getClosestToMouse()
+    local player, nearestDistance = nil, math.huge
+    for i,v in pairs(Players:GetPlayers()) do
+        if v ~= Players.LocalPlayer and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and v.Character:FindFirstChild("HumanoidRootPart") then
+            local root, visible = workspace.CurrentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+            if visible then
+                local distance = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(root.X, root.Y)).Magnitude
+
+                if distance < nearestDistance then
+                    nearestDistance = distance
+                    player = v
+                end
+            end
+        end
+    end
+    return player
+end
+
+
+local function calculateArrowHitChance(v)
+
+    local chance = math.floor(Random.new().NextNumber(Random.new(),0,1) * 100) / 100
+    return chance <= math.floor(v) / 100
+end
+
+FLYING = false
+iyflyspeed = 1
+vehicleflyspeed = 1
+
+function sFLY(vfly)
+    repeat wait() until Players.LocalPlayer and Players.LocalPlayer.Character and Players.LocalPlayer.Character.HumanoidRootPart and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+    repeat wait() until mouse
+    if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+
+    local T = Players.LocalPlayer.Character.HumanoidRootPart
+    local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+    local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+    local SPEED = 0
+
+    local function FLY()
+        FLYING = true
+        local BG = Instance.new('BodyGyro')
+        local BV = Instance.new('BodyVelocity')
+        BG.P = 9e4
+        BG.Parent = T
+        BV.Parent = T
+        BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+        BG.cframe = T.CFrame
+        BV.velocity = Vector3.new(0, 0, 0)
+        BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+        task.spawn(function()
+            repeat wait()
+                if not vfly and Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+                    Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+                end
+                if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
+                    SPEED = 50
+                elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0) and SPEED ~= 0 then
+                    SPEED = 0
+                end
+                if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0 then
+                    BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+                    lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+                elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and (CONTROL.Q + CONTROL.E) == 0 and SPEED ~= 0 then
+                    BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+                else
+                    BV.velocity = Vector3.new(0, 0, 0)
+                end
+                BG.cframe = workspace.CurrentCamera.CoordinateFrame
+            until not FLYING
+            CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+            lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+            SPEED = 0
+            BG:Destroy()
+            BV:Destroy()
+            if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+                Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+            end
+        end)
+    end
+    flyKeyDown = mouse.KeyDown:Connect(function(KEY)
+        if KEY:lower() == 'w' then
+            CONTROL.F = (vfly and vehicleflyspeed or iyflyspeed)
+        elseif KEY:lower() == 's' then
+            CONTROL.B = - (vfly and vehicleflyspeed or iyflyspeed)
+        elseif KEY:lower() == 'a' then
+            CONTROL.L = - (vfly and vehicleflyspeed or iyflyspeed)
+        elseif KEY:lower() == 'd' then 
+            CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
+        elseif QEfly and KEY:lower() == 'e' then
+            CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
+        elseif QEfly and KEY:lower() == 'q' then
+            CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
+        end
+        pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
+    end)
+    flyKeyUp = mouse.KeyUp:Connect(function(KEY)
+        if KEY:lower() == 'w' then
+            CONTROL.F = 0
+        elseif KEY:lower() == 's' then
+            CONTROL.B = 0
+        elseif KEY:lower() == 'a' then
+            CONTROL.L = 0
+        elseif KEY:lower() == 'd' then
+            CONTROL.R = 0
+        elseif KEY:lower() == 'e' then
+            CONTROL.Q = 0
+        elseif KEY:lower() == 'q' then
+            CONTROL.E = 0
+        end
+    end)
+    FLY()
+end
+
+function NOFLY()
+    FLYING = false
+    if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+    if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+        Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+    end
+    pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
+end
+
+
+firehit = function(character,arrow)
+    local fakepos = character[hitpart].Position + Vector3.new(math.random(1,5),math.random(1,5),math.random(1,5))
+    local args = {
+        [1] = Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"),
+        [2] = character.Head,
+        [3] = fakepos,
+        [4] = character.Head.CFrame:ToObjectSpace(CFrame.new(fakepos)),
+        [5] = fakepos * Vector3.new(math.random(1,5),math.random(1,5),math.random(1,5)),
+        [6] = tostring(arrowsshooted)
+    }
+    getRemote("RangedHit"):FireServer(unpack(args))
+end
+
+getgenv().hitremote = getRemote("MeleeDamage")
+getgenv().swingremote = getRemote("MeleeSwing")
+getgenv().fallremote = getRemote("TakeFallDamage")
+
+for i,v in pairs(getgc(true)) do
+    if typeof(v) == "table" and rawget(v, "connectCharacter") then
+        v.connectCharacter = function(among)
+            return
+        end
+    end
+end
+
+
+task.wait(0.5)
+
+pcall(function()
+    for i = 1,25 do
+        getRemote("StartFastRespawn"):FireServer()
+        getRemote("CompleteFastRespawn"):FireServer()
+        wait()
+    end
+end)
