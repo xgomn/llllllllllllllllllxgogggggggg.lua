@@ -371,11 +371,7 @@ about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
 local UITab2 = win:Tab("『愤怒』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)   
- mainSection:Button({
-    Title = "Emotes",
-    ButtonName = "Unlock",
-    },
-    function(v)
+ about:Button( "表情", "Unlock",function(v)
         for i,v in pairs(getgc(true)) do
             if typeof(v) == "table" and rawget(v, "gamepassIdRequired") then
                 if v.gamepassIdRequired ==  "danceEmotes" then
@@ -389,12 +385,7 @@ local about = UITab2:section("『xxxxxxxgo』",true)
         end
     end
 )
-
-mainSection:Button({
-    Title = "Auto Parry",
-    ButtonName = "Enable",
-    },
-    function(v)
+about:Button( "汽车园林","Enable",function(v)
 
 	local lp = game.Players.LocalPlayer
 
@@ -462,12 +453,7 @@ end
 
 game.Players.PlayerAdded:Connect(playerAdded)
 end)
-
-mainSection:Toggle({
-    Title = "Inf Parry",
-    Default = false
-    },
-    function(val)
+about:Toggle("无限招贴","Toggle",false,function(val)
         for i,v in pairs(getgc(true)) do
             if type(v) == "table" and rawget(v, "PARRY_COOLDOWN_IN_SECONDS") and rawget(v, "PARRY_COOLDOWN_IN_SECONDS_AFTER_SUCCESSFUL_PARRY") then
                 if val then
@@ -481,13 +467,7 @@ mainSection:Toggle({
         end
     end
 )
-
-
-mainSection:Toggle({
-    Title = "Spam Jump",
-    Default = false
-    },
-    function(val)
+about:Toggle("垃圾邮件跳跃","Toggle",false,function(val)
         for i,v in pairs(getgc(true)) do
             if typeof(v) == "table" and rawget(v, "getCanJump") then
                 local old = v.getCanJump
@@ -502,12 +482,7 @@ mainSection:Toggle({
         end
     end
 )
-
-mainSection:Toggle({
-    Title = "Inf Stamina",
-    Default = false
-    },
-    function(val)
+about:Toggle("无限耐力","Toggle",false,function(val)
         for i,v in pairs(getgc(true)) do
             if typeof(v) == "table" and rawget(v, "_setStamina") then
                 local old = v._setStamina
@@ -523,30 +498,15 @@ mainSection:Toggle({
          end
     end
 )
-
-mainSection:Toggle({
-    Title = "No Fall Damage",
-    Default = false
-    },
-    function(val)
+about:Toggle("没有灾难损坏","Toggle",false,function(val)
         nofall = val
     end
 )
-
-mainSection:Toggle({
-    Title = "Stomp Aura",
-    Default = false
-    },
-    function(val)
+about:Toggle("斯托拉光环","Toggle",false,function(val)
         stompaura = val
     end
 )
-
-mainSection:Toggle({
-    Title = "No Dash Cooldown",
-    Default = false
-    },
-    function(val)
+about:Toggle("没有破折号冷却","Toggle",false,function(val)
         for i,v2 in pairs(getgc(true)) do
             if typeof(v2) == "table" and rawget(v2, "DASH_COOLDOWN") then
                 if val then
@@ -559,30 +519,15 @@ mainSection:Toggle({
         end
     end
 )
-
-mainSection:Toggle({
-    Title = "No Utility Damage",
-    Default = false
-    },
-    function(val)
+about:Toggle("没有公用事业损坏","Toggle",false,function(val)
         antidamage = val
     end
 )
-
-mainSection:Toggle({
-    Title = "Auto Spawn",
-    Default = false
-    },
-    function(val)
+about:Toggle("自动生成","Toggle",false,function(val)
         autoSpawn = val
     end
 )
-
-mainSection:Toggle({
-    Title = "No Ragdoll",
-    Default = false
-    },
-    function(val)
+about:Toggle("没有布娃娃","Toggle",false,function(val)
         for i,v in pairs(getgc(true)) do
             if typeof(v) == "table" and rawget(v, "toggleRagdoll") then
                 local old = v.toggleRagdoll
@@ -597,30 +542,10 @@ mainSection:Toggle({
         end
     end
 )
-local main = window:Category("", "rbxassetid://7733965386")
-local player = window:Category("Player", "rbxassetid://7743875962")
-local Combat = window:Category("Combat", "rbxassetid://7743878358")
-local misc = window:Category("Misc", "rbxassetid://7734042071")
-local ESP = window:Category("ESP", "rbxassetid://7733774602")
+local UITab2 = win:Tab("『玩家』",'16060333448')
 
-local mainMain = main:Button("Rage", "rbxassetid://7743875962")
-local mainSection = mainMain:Section("Toggles", "Left")
-local playerMain = player:Button("Player", "rbxassetid://7743875962")
-local playerSection = playerMain:Section("Player", "Left")
-local CombatMain = Combat:Button("Combat", "rbxassetid://7743875962")
-local CombatKillauraSection = CombatMain:Section("Kill Aura", "Left")
-local CombatSilentaimSection = CombatMain:Section("Silent Aim", "Right")
-local miscMain = misc:Button("Misc", "rbxassetid://7743875962")
-local miscSection = miscMain:Section("BROKEN", "Left")
-local ESPMain = ESP:Button("ESP", "rbxassetid://7743875962")
-local ESPSection = ESPMain:Section("ESP", "Left")
-
-
-playerSection:Toggle({
-    Title = "enabled",
-    Default = false
-    },
-    function(val)
+local about = UITab2:section("『xxxxxxxgo』",true)
+about:Toggle("启用","Toggle",false,function(val)
         walkspeedenabled = val
 
         if not val then
@@ -629,23 +554,11 @@ playerSection:Toggle({
     end
 )
 
-playerSection:Slider({
-    Title = "Walkspeed",
-    Description = "",
-    Default = 16,
-    Min = 16,
-    Max = 75
-    },
-    function(v)
+about:Slider("步行速度", 16,16,75,function(v)
         walkspeed = v
     end
 )
-
-playerSection:Toggle({
-    Title = "enabled",
-    Default = false
-    },
-    function(val)
+about:Toggle("启用","Toggle",false,function(val)
         jumppowerenabled = val
 
         if not val then
@@ -654,59 +567,27 @@ playerSection:Toggle({
     end
 )
 
-playerSection:Slider({
-    Title = "Jump Power",
-    Description = "",
-    Default = 50,
-    Min = 50,
-    Max = 200
-    },
-    function(v)
+about:Slider("跳跃力量",50,50,200,function(v)
         jumppower = v
     end
 )
-
-playerSection:Toggle({
-    Title = "Inf jump",
-    Default = false
-    },
-    function(val)
+about:Toggle("无限跳","Toggle",false,function(val)
         infjump = val
     end
 )
-
-playerSection:Toggle({
-    Title = "Noclip",
-    Default = false
-    },
-    function(val)
+about:Toggle("没有剪辑","Toggle",false,function(val)
         noclip = val
     end
 )
-
-playerSection:Toggle({
-    Title = "Killsay",
-    Default = false
-    },
-    function(val)
+about:Toggle("杀了","Toggle",false,function(val)
         killsay = val
     end
 )
-
-playerSection:Toggle({
-    Title = "Hide Name",
-    Default = false
-    },
-    function(val)
+about:Toggle("隐藏名称","Toggle",false,function(val)
         hidename = val
     end
 )
-
-playerSection:Toggle({
-    Title = "Fly",
-    Default = false
-    },
-    function(val)
+about:Toggle("飞行","Toggle",false,function(val)
         flying = not flying
         if val then
             sFLY(true)
@@ -716,11 +597,7 @@ playerSection:Toggle({
     end
 )
 
-playerSection:Keybind({
-    Title = "Fly Keybind",
-    Default = Enum.KeyCode.K
-    },
-    function(val)
+about:Keybind( "飞钥匙布","Enum.KeyCode.K",function(val)
         flying = not flying
 
         if flying then
@@ -730,21 +607,11 @@ playerSection:Keybind({
         end
     end
 )
-
-playerSection:Toggle({
-    Title = "Auto Equip",
-    Default = false
-    },
-    function(val)
+about:Toggle("自动装备","Toggle",false,function(val)
         autoequip = val
     end
 )
-
-playerSection:Toggle({
-    Title = "Jesus",
-    Default = false
-    },
-    function(val)
+about:Toggle("耶稣","Toggle",false,function(val)
         for i,v2 in pairs(game.Workspace.Map:GetDescendants()) do
             if v2.Name == "WaterArea" then
                 if val then
@@ -756,23 +623,17 @@ playerSection:Toggle({
         end
     end
 )
+local UITab2 = win:Tab("『战斗』",'16060333448')
 
-CombatKillauraSection:Toggle({
-    Title = "Kill Aura",
-    Default = false
-    },
-    function(val)
+local about = UITab2:section("『xxxxxxxgo』",true)
+
+about:Toggle("杀死光环","Toggle",false,function(val)
         killaura = val
     end
 )
 
 -- reach here
-
-CombatKillauraSection:Toggle({
-    Title = "Reach (broken)",
-    Default = false
-    },
-    function(val)
+about:Toggle("到达（破碎）","Toggle",false,function(val)
         Reaching = val
         if val == false then return end
         local character = game.Players.LocalPlayer.Character
@@ -827,42 +688,19 @@ CombatKillauraSection:Toggle({
     end
 )
 
-
-CombatSilentaimSection:Toggle({
-    Title = "Aimbot",
-    Default = false
-    },
-    function(val)
+about:Toggle("瞄准","Toggle",false,function(val)
         aimbot = val
     end
 )
-
-CombatSilentaimSection:Toggle({
-    Title = "Silent Aim",
-    Default = false
-    },
-    function(val)
+about:Toggle("沉默的目标","Toggle",false,function(val)
         silentaim = val
     end
 )
-
-CombatSilentaimSection:Slider({
-    Title = "Hit Chance",
-    Description = "",
-    Default = 100,
-    Min = 0,
-    Max = 100
-    },
-    function(v)
+about:Slider("击中机会",100,0,100,function(v)
         silentaimhitchance = v
     end
 )
-
-CombatSilentaimSection:Toggle({
-    Title = "Wallbang",
-    Default = false
-    },
-    function(val)
+about:Toggle("墙爆","Toggle",false,function(val)
         if val then
             game.CollectionService:AddTag(game:GetService("Workspace").Map,'RANGED_CASTER_IGNORE_LIST')
         else
@@ -870,21 +708,11 @@ CombatSilentaimSection:Toggle({
         end
     end
 )
-
-CombatSilentaimSection:Toggle({
-    Title = "No Spread",
-    Default = false
-    },
-    function(val)
+about:Toggle("没有传播","Toggle",false,function(val)
         nospread = val
     end
 )
-
-CombatSilentaimSection:Toggle({
-    Title = "No Recoil",
-    Default = false
-    },
-    function(val)
+about:Toggle("没有反冲","Toggle",false,function(val)
         for i,v2 in pairs(getgc(true)) do
             if typeof(v2) == "table" and rawget(v2, "recoilAmount") then
                 if val then
@@ -908,12 +736,7 @@ CombatSilentaimSection:Toggle({
         end
     end
 )
-
-CombatSilentaimSection:Toggle({
-    Title = "No Gravity",
-    Default = false
-    },
-    function(val)
+about:Toggle("没有重力","Toggle",false,function(val)
         for i,v2 in pairs(getgc(true)) do
             if typeof(v2) == "table" and rawget(v2, "recoilAmount") then
                 if val then
@@ -925,21 +748,11 @@ CombatSilentaimSection:Toggle({
         end
     end
 )
-
-CombatSilentaimSection:Toggle({
-    Title = "Instant Charge (broken)",
-    Default = false
-    },
-    function(val)
+about:Toggle("即时费用（破碎）","Toggle",false,function(val)
         instantcharge = val
     end
 )
-
-CombatSilentaimSection:Toggle({
-    Title = "Auto Shoot (broken)",
-    Default = false
-    },
-    function(val)
+about:Toggle("自动拍摄（破碎）","Toggle",false,function(val)
         for i,v in pairs(getgc(true)) do
             if typeof(v) == 'table' and rawget(v,'startShootingAfterCharge') then
                 if val then
@@ -951,12 +764,10 @@ CombatSilentaimSection:Toggle({
         end
     end
 )
+local UITab2 = win:Tab("『切换』",'16060333448')
 
-miscSection:Button({
-    Title = "Fling",
-    ButtonName = "yeet"
-    },
-    function()
+local about = UITab2:section("『xxxxxxxgo』",true)
+about:Toggle("Fling","Toggle",false,function()
         local plr = game.Players.LocalPlayer
         local oldHumanoid = plr.Character.Humanoid
         local torso = game.Players.LocalPlayer.Character.HumanoidRootPart
@@ -1052,61 +863,35 @@ miscSection:Button({
          game.Players.LocalPlayer.Character.HumanoidRootPart.RootJoint.Part0 = nil
     end
 )
-
-miscSection:Textbox({
-    Title = "Kill Sound (broken)",
-    Default = ""
-    },
-    function(val)
+about:Textbox("杀了声音（破碎）","",function(val)
         game:GetService("ReplicatedStorage").Shared.Assets.Sounds.KillSound.SoundId = "rbxassetid://"..val
     end
 
 )
 
-miscSection:Textbox({
-    Title = "Hit Sound (broken)",
-    Default = ""
-    },
-    function(val)
+about:Textbox({"击中声音（破碎）","", function(val)
         game:GetService("ReplicatedStorage").Shared.Assets.Sounds.HitmarkerSound.SoundId = "rbxassetid://"..val
      end
 
 )
 
-ESPSection:ColorPicker({
-    Title = "ESP Color",
-    Default = Color3.new(255, 0, 0)
-    },
-    function(val)
+local UITab2 = win:Tab("『ESP』",'16060333448')
+
+local about = UITab2:section("『xxxxxxxgo』",true)
+about:ColorPicker("ESP颜色",Color3.new(255, 0, 0),function(val)
         getgenv().TracerColor = val
         bruh.FillColor = TracerColor
     end
 )
-
-ESPSection:Toggle({
-    Title = "Tracers",
-    Default = false
-    },
-    function(val)
+about:Toggle("示踪剂","Toggle",false,function(val)
         tracersenabled = val
     end
 )
-
-ESPSection:Toggle({
-    Title = "text",
-    Default = false
-    },
-    function(val)
+about:Toggle("文字","Toggle",false,function(val)
         textenabled = val
     end
 )
-
-
-ESPSection:Toggle({
-    Title = "Boxes",
-    Default = false
-    },
-    function(val)
+about:Toggle("框","Toggle",false,function(val)
         boxesenabled = val
     end
 )
@@ -1121,8 +906,7 @@ Players.PlayerRemoving:Connect(function(v)
         boxes[v] = nil
     end
 end)
-
-Players.LocalPlayer.leaderstats.Score.Changed:Connect(function()
+about:Connect(function()
     if killsay then
         game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(words[math.random(1, #words)])
     end
@@ -1575,7 +1359,7 @@ end)
 local StarterGui = game:GetService("StarterGui")
 
 local Notifications = {
-	"Credits to Gus and Superbear",
+	"学分到Gus和超级罪",
 	
 }
 
