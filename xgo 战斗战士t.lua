@@ -15,33 +15,33 @@ about:Label("你的用户名:"..game.Players.LocalPlayer.Character.Name)
 local UITab2 = win:Tab("『主要』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)   
- about:Toggle("自动寻找玩家","Toggle",false,function(true)
+ about:Toggle("自动寻找玩家","Toggle",false,function()
         _G.followclosest = true
 	follow_unchecked.Visible = false
 	follow_checked.Visible = true
     end
 )
-about:Toggle("自动跳","Toggle",false,function(true)
+about:Toggle("自动跳","Toggle",false,function()
         _G.autojump = true
 	jump_unchecked.Visible = false
 	jump_checked.Visible = true
     end
 )
-about:Toggle("自动复活","Toggle",false,function(false)
+about:Toggle("自动复活","Toggle",false,function()
         _G.autospawn = false
 	spawn_unchecked.Visible = true
 	spawn_checked.Visible = false
     end
 )
 
-about:Toggle("杀死光环","Toggle",false,function(false)
+about:Toggle("杀死光环","Toggle",false,function()
         _G.killsay = false
 	killsay_unchecked.Visible = true
 	killsay_checked.Visible = false
 end)
 
 
-about:Toggle("自动击中","Toggle",false,function(true)
+about:Toggle("自动击中","Toggle",false,function()
         _G.autohit = true
 	autohit_unchecked.Visible = false
 	autohit_checked.Visible = true
@@ -79,13 +79,13 @@ about:Toggle("无限耐力","Toggle",false,function(val)
     end
 )
 
-about:Toggle("启用","Toggle",false,function(false)
+about:Toggle("启用","Toggle",false,function()
         _G.enabled = false
 	killaura_unchecked.Visible = true
 	killaura_checked.Visible = false
     end
 )
-about:Toggle("反招架","Toggle",false,function(true)
+about:Toggle("反招架","Toggle",false,function()
         _G.antiparry = true
 	antiparry_unchecked.Visible = false
 	antiparry_checked.Visible = true
@@ -506,7 +506,7 @@ about:Toggle("击中声音","Toggle",false,function(val)
 local UITab2 = win:Tab("『ESP』",'16060333448')
 
 local about = UITab2:section("『xxxxxxxgo』",true)
-about:Toggle("画线","Toggle",false,function(true)
+about:Toggle("画线","Toggle",false,function()
         _G.drawlines = true
 	drawline_unchecked.Visible = false
 	drawline_checked.Visible = true
