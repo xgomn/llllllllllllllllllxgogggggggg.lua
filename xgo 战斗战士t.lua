@@ -1,4 +1,6 @@
 
+
+
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/neilonmacedo153/refs/heads/main/xgoui.txt"))();    
 local win = ui:new("goto战斗战士")
 
