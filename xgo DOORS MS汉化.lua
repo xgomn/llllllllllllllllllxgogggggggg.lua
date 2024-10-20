@@ -10297,34 +10297,33 @@ end
 function UICreator:CreateSettingsTab()
     local SettingsTab = shared.Window:AddTab("UI设置")
 
-    local MenuGroup = SettingsTab:AddLeftGroupbox("Menu")
-    local CreditsGroup = SettingsTab:AddRightGroupbox("Credits")
+    local MenuGroup = SettingsTab:AddLeftGroupbox("选单")
+    local CreditsGroup = SettingsTab:AddRightGroupbox("信息  xgo")
 
-    MenuGroup:AddToggle("ExecuteOnTeleport", { Default = false, Text = "Execute On Teleport" })
-    MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "Open Keybind Menu", Callback = function(value) shared.Library.KeybindFrame.Visible = value end})
-    MenuGroup:AddToggle("ShowCustomCursor", {Text = "Custom Cursor", Default = true, Callback = function(Value) shared.Library.ShowCustomCursor = Value end})
+    MenuGroup:AddToggle("ExecuteOnTeleport", { Default = false, Text = "在传送上执行" })
+    MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "打开键控菜单", Callback = function(value) shared.Library.KeybindFrame.Visible = value end})
+    MenuGroup:AddToggle("ShowCustomCursor", {Text = "自定义光标", Default = true, Callback = function(Value) shared.Library.ShowCustomCursor = Value end})
     MenuGroup:AddDivider()
-    MenuGroup:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
-    MenuGroup:AddButton("Join Discord", function()
+    MenuGroup:AddLabel("菜单绑定"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "菜单键控" })
+    MenuGroup:AddButton("加入 Discord", function()
         local Inviter = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
         Inviter.Join("https://discord.com/invite/cfyMptntHr")
         Inviter.Prompt({
             name = "mspaint",
             invite = "https://discord.com/invite/cfyMptntHr",
         })
-    end):AddButton("Copy Link", function()
+    end):AddButton("复制链接", function()
         if setclipboard then
             setclipboard("https://discord.com/invite/cfyMptntHr")
-            shared.Library:Notify("Copied discord link to clipboard!")
+            shared.Library:Notify("复制的discord链接到剪贴板!")
         else
-            shared.Library:Notify("Discord link: https://discord.com/invite/cfyMptntHr", 10)
+            shared.Library:Notify("discord链接：https://discord.com/invite/cfymptnthth", 10)
         end
     end)
-    MenuGroup:AddButton("Unload", function() shared.Library:Unload() end)
+    MenuGroup:AddButton("卸载", function() shared.Library:Unload() end)
 
     CreditsGroup:AddLabel("服务器名称:"..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name)
-    CreditsGroup:AddLabel("账户年龄:"..player.AccountAge.."天")
-    CreditsGroup:AddLabel("注入器查看:"," "..identifyexecutor().."")
+    CreditsGroup:AddLabel("注入器:"," "..identifyexecutor().."")
     CreditsGroup:AddLabel("人物血量:"," "..game.Players.LocalPlayer.Character.Humanoid.Health.."")
     CreditsGroup:AddLabel("人物跳跃:"," "..game.Players.LocalPlayer.Character.Humanoid.JumpPower.."")
     CreditsGroup:AddLabel("人物速度:"," "..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed.."")
