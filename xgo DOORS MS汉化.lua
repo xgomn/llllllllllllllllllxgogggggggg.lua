@@ -1,5 +1,3 @@
---
-
 local tweensvc = game:GetService("TweenService")
 local players = game:GetService("Players")
 local plr = players.LocalPlayer
@@ -1896,7 +1894,7 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
                 if Options.AutoInteractIgnore.Value["Light Source Items"] and prompt.Parent:GetAttribute("Tool_LightSource") and not prompt.Parent:GetAttribute("Tool_CanCutVines") then return false end
                 if Options.AutoInteractIgnore.Value["骷髅提示"] and prompt.Name == "SkullPrompt" then return false end
 
-                if prompt.Parent:GetAttribute("PropType") == "电池" and not (shared.Character:FindFirstChildOfClass("Tool") and (shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("RechargeProp") == "Battery" or shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("StorageProp") == "Battery")) then return false end 
+                if prompt.Parent:GetAttribute("PropType") == "Battery" and not (shared.Character:FindFirstChildOfClass("Tool") and (shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("RechargeProp") == "Battery" or shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("StorageProp") == "Battery")) then return false end 
                 if prompt.Parent:GetAttribute("PropType") == "Heal" and shared.Humanoid and shared.Humanoid.Health == shared.Humanoid.MaxHealth then return false end
                 if prompt.Parent.Name == "MinesAnchor" then return false end
 
