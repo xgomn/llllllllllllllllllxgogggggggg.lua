@@ -10295,7 +10295,7 @@ function UICreator:CreateWindow()
 end
 
 function UICreator:CreateSettingsTab()
-    local SettingsTab = shared.Window:AddTab("UI Settings")
+    local SettingsTab = shared.Window:AddTab("UI设置")
 
     local MenuGroup = SettingsTab:AddLeftGroupbox("Menu")
     local CreditsGroup = SettingsTab:AddRightGroupbox("Credits")
@@ -10322,15 +10322,18 @@ function UICreator:CreateSettingsTab()
     end)
     MenuGroup:AddButton("Unload", function() shared.Library:Unload() end)
 
-    CreditsGroup:AddLabel("开发者:")
-    CreditsGroup:AddLabel("upio -所有者")
-    CreditsGroup:AddLabel("主脚本开发")
-    CreditsGroup:AddLabel("mstudio45")
-    CreditsGroup:AddLabel("bacalhauz")
-    CreditsGroup:AddLabel("devs")
-    CreditsGroup:AddLabel("汉化作者:R-Exploit")
-    CreditsGroup:AddLabel("测试员:NIDO_MUNCISEEK--")   
-    CreditsGroup:AddLabel("汉化修补:小玄奘【XK脚本中心作者】")
+    CreditsGroup:AddLabel("服务器名称:"..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name)
+    CreditsGroup:AddLabel("账户年龄:"..player.AccountAge.."天")
+    CreditsGroup:AddLabel("注入器查看:"," "..identifyexecutor().."")
+    CreditsGroup:AddLabel("人物血量:"," "..game.Players.LocalPlayer.Character.Humanoid.Health.."")
+    CreditsGroup:AddLabel("人物跳跃:"," "..game.Players.LocalPlayer.Character.Humanoid.JumpPower.."")
+    CreditsGroup:AddLabel("人物速度:"," "..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed.."")
+    CreditsGroup:AddLabel("人物重力:"," "..game.Workspace.Gravity.."")
+    CreditsGroup:AddLabel("人物高度:"," "..game.Players.LocalPlayer.Character.Humanoid.HipHeight.."")
+    CreditsGroup:AddLabel("开发人员:mstudio45")
+    CreditsGroup:AddLabel("开发人员:bacalhauz")
+    CreditsGroup:AddLabel("开发人员:devs")
+    CreditsGroup:AddLabel("ui汉化:xxxxxg")
 
     shared.Library.ToggleKeybind = shared.Options.MenuKeybind
 
