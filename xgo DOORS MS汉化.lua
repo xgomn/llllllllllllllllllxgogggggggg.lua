@@ -1245,7 +1245,7 @@ shared.Connect:GiveSignal(shared.ProximityPromptService.PromptTriggered:Connect(
     
     local isDoorLock = prompt.Name == "UnlockPrompt" and prompt.Parent.Name == "Lock" and not prompt.Parent.Parent:GetAttribute("Opened")
     local isSkeletonDoor = prompt.Name == "SkullPrompt" and prompt.Parent.Name == "SkullLock" and not (prompt.Parent:FindFirstChild("Door") and prompt.Parent.Door.Transparency == 1)
-    local isChestBox = prompt.Name == "ActivateEventPrompt" and prompt.Parent:GetAttribute("Locked") and (prompt.Parent.Name:match("Chest") or prompt.Parent:GetAttribute("LockAttribute") == "CanCutVines" or prompt.Parent.Name == "CuttableVines")
+    local isChestBox = prompt.Name == "ActivateEventPrompt" and prompt.Parent:GetAttribute("Locked") and (prompt.Parent.Name:match("箱子") or prompt.Parent:GetAttribute("LockAttribute") == "CanCutVines" or prompt.Parent.Name == "CuttableVines")
     local isRoomsDoorLock = prompt.Parent.Parent.Parent.Name == "RoomsDoor_Entrance" and prompt.Enabled
     
     if isDoorLock or isSkeletonDoor or isChestBox or isRoomsDoorLock then
@@ -1894,7 +1894,7 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
                 if Options.AutoInteractIgnore.Value["Light Source Items"] and prompt.Parent:GetAttribute("Tool_LightSource") and not prompt.Parent:GetAttribute("Tool_CanCutVines") then return false end
                 if Options.AutoInteractIgnore.Value["骷髅提示"] and prompt.Name == "SkullPrompt" then return false end
 
-                if prompt.Parent:GetAttribute("PropType") == "Battery" and not (shared.Character:FindFirstChildOfClass("Tool") and (shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("RechargeProp") == "电池" or shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("StorageProp") == "电池")) then return false end 
+                if prompt.Parent:GetAttribute("PropType") == "电池" and not (shared.Character:FindFirstChildOfClass("Tool") and (shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("RechargeProp") == "Battery" or shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("StorageProp") == "Battery")) then return false end 
                 if prompt.Parent:GetAttribute("PropType") == "Heal" and shared.Humanoid and shared.Humanoid.Health == shared.Humanoid.MaxHealth then return false end
                 if prompt.Parent.Name == "MinesAnchor" then return false end
 
@@ -5230,7 +5230,7 @@ local Tabs = Script.Tabs
 --// Main \\--
 local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("玩家") do
     PlayerGroupBox:AddToggle("EnableSpeedHack", {
-        Text = "极限速度",
+        Text = "设置速度（追逐时请关闭）",
         Default = false
     })
 
@@ -5298,7 +5298,7 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("玩家") do
     })
     
     PlayerGroupBox:AddSlider("FlySpeed", {
-        Text = "飞行速度",
+        Text = "设置走空速度",
         Default = 15,
         Min = 10,
         Max = 22,
@@ -10387,7 +10387,7 @@ end
 
 function UICreator:CreateWindow()
     local Window = shared.Library:CreateWindow({
-        Title = "xgo 汉化°̥̥̥̥̥̥̥°̥̥̥̥̥̥̥mspaint v3 °̥̥̥̥̥̥̥°̥̥̥̥̥̥̥ " .. shared.ScriptName,
+        Title = "xgo 汉化°̥̥̥̥̥̥̥̥̥MSv3 °̥̥̥̥̥̥" .. shared.ScriptName,
         Center = true,
         AutoShow = true,
         Resizable = true,
@@ -10473,12 +10473,12 @@ function UICreator:CreateSettingsTab()
     MenuGroup:AddButton("关闭UI（关闭脚本）", function() shared.Library:Unload() end)
 
     CreditsGroup:AddLabel("服务器名称:"..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name)
-    CreditsGroup:AddLabel("注入器:","..identifyexecutor()..")
-    CreditsGroup:AddLabel("人物血量:","..game.Players.LocalPlayer.Character.Humanoid.Health..")
-    CreditsGroup:AddLabel("人物跳跃:","..game.Players.LocalPlayer.Character.Humanoid.JumpPower..")
-    CreditsGroup:AddLabel("人物速度:","..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed..")
-    CreditsGroup:AddLabel("人物重力:","..game.Workspace.Gravity..")
-    CreditsGroup:AddLabel("人物高度:","..game.Players.LocalPlayer.Character.Humanoid.HipHeight..")
+    CreditsGroup:AddLabel("注入器:"..identifyexecutor()..)
+    CreditsGroup:AddLabel("人物血量:"..game.Players.LocalPlayer.Character.Humanoid.Health..")
+    CreditsGroup:AddLabel("人物跳跃:"..game.Players.LocalPlayer.Character.Humanoid.JumpPower..)
+    CreditsGroup:AddLabel("人物速度:"..game.Players.LocalPlayer.Character.Humanoid.WalkSpeed..)
+    CreditsGroup:AddLabel("人物重力:"..game.Workspace.Gravity..)
+    CreditsGroup:AddLabel("人物高度:"..game.Players.LocalPlayer.Character.Humanoid.HipHeight..)
     CreditsGroup:AddLabel("开发人员:mstudio45")
     CreditsGroup:AddLabel("开发人员:bacalhauz")
     CreditsGroup:AddLabel("开发人员:devs")
