@@ -1,4 +1,3 @@
---DOORS
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/goto/refs/heads/main/jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"))()
 
 local sound = Instance.new("Sound", workspace)
@@ -3359,7 +3358,7 @@ local TrollingGroupBox = Tabs.Exploits:AddLeftGroupbox("娱乐") do
         Default = false
     }):AddKeyPicker("SpamOtherTools", {
         Default = "X",
-        Text = "垃圾邮件其他工具",
+        Text = "功能尚未可知",
         Mode = shared.Library.IsMobile and "Toggle" or "Hold",
         SyncToggleState = shared.Library.IsMobile
     })
@@ -3372,6 +3371,10 @@ local TrollingGroupBox = Tabs.Exploits:AddLeftGroupbox("娱乐") do
     TrollingGroupBox:AddToggle("Twerk", {
         Text = "跳舞【开第三人称可以看见】",
         Default = false
+    })
+    TrollingGroupBox:AddToggle("Twerk", {
+        Text = "xgo 键盘",
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/goto/refs/heads/main/xgo%E5%BB%BA%E7%9B%98.lua"))()
     })
 end
 
@@ -4152,7 +4155,7 @@ if Script.IsHotel then
 
     local Hotel_FarmGroupBox = Tabs.Floor:AddLeftGroupbox("自动") do
         Hotel_FarmGroupBox:AddToggle("KnobFarm", {
-            Text = "自动Knob",
+            Text = "自动旋钮",
             Default = false
         })
     end
@@ -5149,7 +5152,7 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("玩家") do
     }):AddKeyPicker("NoclipKey", {
         Mode = "Toggle",
         Default = "N",
-        Text = "Noclip",
+        Text = "没有剪辑（不知道）",
         SyncToggleState = true
     })
 
@@ -5159,7 +5162,7 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("玩家") do
     }):AddKeyPicker("FlyKey", {
         Mode = "Toggle",
         Default = "F",
-        Text = "Fly",
+        Text = "走空",
         SyncToggleState = true
     })
     
@@ -5200,7 +5203,7 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("自动化") do
     }):AddKeyPicker("AutoInteractKey", {
         Mode = shared.Library.IsMobile and "Toggle" or "Hold",
         Default = "R",
-        Text = "Auto Interact",
+        Text = "自动互动",
         SyncToggleState = shared.Library.IsMobile
     })
 
@@ -5229,7 +5232,7 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("自动化") do
     }):AddKeyPicker("AutoWardrobeKey", {
         Mode = "Toggle",
         Default = "Q",
-        Text = "Auto " .. Script.HidingPlaceName[Script.Floor.Value],
+        Text = "自动 " .. Script.HidingPlaceName[Script.Floor.Value],
         SyncToggleState = true
     })
     AutomationGroupBox:AddDivider()
@@ -5421,42 +5424,42 @@ end
 local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
     local ESPTab = ESPTabBox:AddTab("透视") do
         ESPTab:AddToggle("DoorESP", {
-            Text = "门透视",
+            Text = "门",
             Default = false,
         }):AddColorPicker("DoorEspColor", {
             Default = Color3.new(0, 1, 1),
         })
     
         ESPTab:AddToggle("ObjectiveESP", {
-            Text = "钥匙透视",
+            Text = "钥匙",
             Default = false,
         }):AddColorPicker("ObjectiveEspColor", {
             Default = Color3.new(0, 1, 0),
         })
     
         ESPTab:AddToggle("EntityESP", {
-            Text = "怪物透视",
+            Text = "怪物",
             Default = false,
         }):AddColorPicker("EntityEspColor", {
             Default = Color3.new(1, 0, 0),
         })
     
         ESPTab:AddToggle("ItemESP", {
-            Text = "物品透视",
+            Text = "物品",
             Default = false,
         }):AddColorPicker("ItemEspColor", {
             Default = Color3.new(1, 0, 1),
         })
     
         ESPTab:AddToggle("ChestESP", {
-            Text = "箱子透视",
+            Text = "箱子",
             Default = false,
         }):AddColorPicker("ChestEspColor", {
             Default = Color3.new(1, 1, 0),
         })
     
         ESPTab:AddToggle("PlayerESP", {
-            Text = "玩家透视",
+            Text = "玩家",
             Default = false,
         }):AddColorPicker("PlayerEspColor", {
             Default = Color3.new(1, 1, 1),
@@ -5470,7 +5473,7 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
         })
     
         ESPTab:AddToggle("GoldESP", {
-            Text = "金币透视",
+            Text = "金币",
             Default = false,
         }):AddColorPicker("GoldEspColor", {
             Default = Color3.new(1, 1, 0),
@@ -5682,7 +5685,7 @@ local SelfTabBox = Tabs.Visuals:AddRightTabbox() do
             Default = false
         }):AddKeyPicker("ThirdPersonKey", {
             Default = "V",
-            Text = "Third Person",
+            Text = "第三人称",
             Mode = "Toggle",
             SyncToggleState = not shared.Library.IsMobile -- ????
         })
@@ -6172,8 +6175,8 @@ if Script.IsBackdoor then
             end
 
             shared.Notify:Alert({
-                Title = "ENTITIES",
-                Description = "Haste is incoming, please find a lever ASAP!",
+                Title = "实体",
+                Description = "急速入境，请尽快找到杠杆!",
                 Time = haste_incoming_progress,
 
                 Warning = true
@@ -9146,7 +9149,7 @@ function Script.Functions.Minecart.NodeDestroy(roomNum: number)
             table.remove(realNodes, _firstKeep + 1)
         end
     else
-        print("[NodeDestroy] Unable to destroy REAL nodes.")
+        print("[nodedestroy]无法摧毁真实节点.")
     end
 
     if fakeNodes then
@@ -9156,10 +9159,10 @@ function Script.Functions.Minecart.NodeDestroy(roomNum: number)
         end
         fakeNodes = {} --if we now all the nodes will be destroyed then just make that.
     else
-        print("[NodeDestroy] Unable to destroy FAKE nodes.")
+        print("[nodedestroy]无法摧毁假节点.")
     end
 
-    print(string.format("[NodeDestroy] Task completed, remaining: Real nodes: %d | Fake nodes %s", #realNodes, #fakeNodes))
+    print(string.format("[nodedestroy]任务完成,剩下：真实节点: %d | 假节点 %s", #realNodes, #fakeNodes))
 end
 
 local isMinecartTeleporting = false --for debug purpouses.
@@ -10253,7 +10256,7 @@ end
 
 function UICreator:CreateWindow()
     local Window = shared.Library:CreateWindow({
-        Title = "xgo 汉化°̥̥̥̥̥̥̥°̥̥̥̥̥̥̥mspaint v3 DOORS °̥̥̥̥̥̥̥°̥̥̥̥̥̥̥ " .. shared.ScriptName,
+        Title = "xgo 汉化°̥̥̥̥̥̥̥°̥̥̥̥̥̥̥mspaint v3 °̥̥̥̥̥̥̥°̥̥̥̥̥̥̥ " .. shared.ScriptName,
         Center = true,
         AutoShow = true,
         Resizable = true,
@@ -10302,7 +10305,7 @@ function UICreator:CreateSettingsTab()
     local CreditsGroup = SettingsTab:AddRightGroupbox("信息  xgo")
 
     MenuGroup:AddToggle("ExecuteOnTeleport", { Default = false, Text = "在传送上执行" })
-    MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "打开键控菜单", Callback = function(value) shared.Library.KeybindFrame.Visible = value end})
+    MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "打开重要功能菜单", Callback = function(value) shared.Library.KeybindFrame.Visible = value end})
     MenuGroup:AddToggle("ShowCustomCursor", {Text = "自定义光标", Default = true, Callback = function(Value) shared.Library.ShowCustomCursor = Value end})
     MenuGroup:AddDivider()
     MenuGroup:AddLabel("菜单绑定"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "菜单键控" })
