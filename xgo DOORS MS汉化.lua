@@ -1,3 +1,4 @@
+--DOORS
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/goto/refs/heads/main/jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"))()
 
 local sound = Instance.new("Sound", workspace)
