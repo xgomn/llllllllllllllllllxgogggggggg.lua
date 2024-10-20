@@ -1,43 +1,6 @@
-local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/VeaMSRZK"))()
-OrionLib:MakeNotification({
-                    Name = "mspaint V3汉化",
-                    Content = "xgo 已经汉化",
-                    Time = 10
-                })    
-                
-                local sound = Instance.new("Sound", workspace)
-sound.SoundId = "rbxassetid://4590662766"
-sound:Play()
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/GTAFAW/goto/refs/heads/main/jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"))()
 
-OrionLib:MakeNotification({
-                    Name = "mspaint V3汉化",
-                    Content = "汉化作者:xgo",
-                    Time = 10
-                })    
-                
-                local sound = Instance.new("Sound", workspace)
-sound.SoundId = "rbxassetid://4590662766"
-sound:Play()
-
-OrionLib:MakeNotification({
-                    Name = "mspaint V3汉化",
-                    Content = "xgo 启动完成",
-                    Time = 10
-                })    
-                
-                local sound = Instance.new("Sound", workspace)
-sound.SoundId = "rbxassetid://4590662766"
-sound:Play()
-
-wait(1)
-
-OrionLib:MakeNotification({
-                    Name = "你的注入器："..identifyexecutor(),
-                    Content = "测试",
-                    Time = 10
-                })
-                
-                local sound = Instance.new("Sound", workspace)
+local sound = Instance.new("Sound", workspace)
 sound.SoundId = "rbxassetid://4590662766"
 sound:Play()
 
@@ -51,10 +14,10 @@ elseif not isfolder("mspaint/doors/backdoor") then
 elseif not isfolder("mspaint/doors/rooms") then
     makefolder("mspaint/doors/rooms")
 end
--- Will be used later for getting flattened globals
+-- 后来将被用来获得扁平的全局
 local ImportGlobals
 
--- Holds direct closure data (defining this before the DOM tree for line debugging etc)
+-- 保持直接关闭数据（在DOM树之前定义此线路调试等）
 local ClosureBindings = {
     function()local wax,script,require=ImportGlobals(1)local ImportGlobals return (function(...)if getgenv().mspaint_loading then print("[mspaint] Loading stopped. (ERROR: Loading)"); return end
 if getgenv().mspaint_loaded then print("[mspaint] Loading stopped. (ERROR: Already loaded)"); return end
@@ -399,10 +362,10 @@ function Script.Functions.UpdateBloxstrapRPC()
     if not wax.shared.BloxstrapRPC then return end
     
     wax.shared.BloxstrapRPC.SetRichPresence({
-        details = "Playing 3008 [ mspaint v3 ]",
+        details = "播放3008 [mspaint v3]",
         state = string.lower(Script.CurrentDay.Text):gsub("^%l", string.upper),
         largeImage = {
-            hoverText = "Using mspaint v3"
+            hoverText = "使用Mspaint v3"
         },
         smallImage = {
             assetId = 6925817108,
@@ -580,7 +543,7 @@ getgenv().mspaint_loaded = true
 end)() end,
     [8] = function()local wax,script,require=ImportGlobals(8)local ImportGlobals return (function(...)--// Loading Wait \\--
 if shared.LocalPlayer and shared.LocalPlayer.PlayerGui:FindFirstChild("LoadingUI") and shared.LocalPlayer.PlayerGui.LoadingUI.Enabled then
-    print("[mspaint] Waiting for game to load...")
+    print("[mspaint]等待游戏加载...")
     repeat task.wait() until not shared.LocalPlayer.PlayerGui:FindFirstChild("LoadingUI") and true or not shared.LocalPlayer.PlayerGui.LoadingUI.Enabled
 end
 
@@ -657,8 +620,8 @@ Script.SuffixPrefixes = {
 }
 
 Script.PrettyFloorName = {
-    ["Fools"] = "Super Hard Mode",
-    ["Retro"] = "Retro Mode"
+    ["Fools"] = "超级硬模式",
+    ["Retro"] = "复古模式"
 }
 
 Script.FloorImages = {
@@ -903,7 +866,7 @@ Script.Tracks = {
 }
 
 function Script.Functions.Warn(message: string)
-    warn("WARN - mspaint:", message)
+    warn("警告 -  Mspaint:", message)
 end
 
 Script._mspaint_custom_captions = Instance.new("ScreenGui"); do
@@ -989,17 +952,17 @@ function Script.Functions.NotifyGlitch()
     if Options.NotifyEntity.Value["Void/Glitch"] and Script.LatestRoom.Value > Script.CurrentRoom + Script.VoidThresholdValues[Script.Floor.Value] and Script.Alive and not table.find(Script.Temp.VoidGlitchNotifiedRooms, Script.CurrentRoom) then
         table.insert(Script.Temp.VoidGlitchNotifiedRooms, Script.CurrentRoom)
 
-        local message = "Void/Glitch is coming once the next door is opened."
+        local message = "空白/小幅即将到来，下一扇门打开."
 
         if Script.IsRooms then
             local roomsLeft = (6 - (Script.LatestRoom.Value - Script.CurrentRoom))
-            message = "Void/Glitch is coming " .. (if roomsLeft == 0 then "once the next door is opened." else "in " .. roomsLeft .. " rooms") .. "."
+            message = "空隙/小洞即将到来 " .. (if roomsLeft == 0 then "一旦下一扇门打开." else "在...里面 " .. roomsLeft .. " rooms") .. "."
         end
 
         shared.Notify:Alert({
-            Title = "ENTITIES",
+            Title = "实体",
             Description = message,
-            Reason = "Go to the next room to avoid it.",
+            Reason = "去下一个房间避免它.",
 
             Warning = true
         })
@@ -1028,11 +991,11 @@ function Script.Functions.UpdateRPC()
     end
 
     wax.shared.BloxstrapRPC.SetRichPresence({
-        details = "Playing DOORS [ mspaint v3 ]",
-        state = roomNumberPrefix .. prettifiedRoomNumber .. " (" .. if Script.PrettyFloorName[Script.Floor.Value] then Script.PrettyFloorName[Script.Floor.Value] else ("The " .. Script.Floor.Value)  .. ")",
+        details = "播放门[mspaint v3]",
+        state = roomNumberPrefix .. prettifiedRoomNumber .. " (" .. if Script.PrettyFloorName[Script.Floor.Value] then Script.PrettyFloorName[Script.Floor.Value] else ("这 " .. Script.Floor.Value)  .. ")",
         largeImage = {
             assetId = Script.FloorImages[Script.Floor.Value] or 16875079348,
-            hoverText = "Using mspaint v3"
+            hoverText = "使用Mspaint v3 汉化xgo"
         },
         smallImage = {
             assetId = 6925817108,
@@ -1232,9 +1195,9 @@ shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
 
                     if Options.NotifyEntity.Value[shortName] then
                         shared.Notify:Alert({
-                            Title = "ENTITIES",
+                            Title = "实体",
                             Description = string.format("%s %s", shortName, Options.NotifyEntityMessage.Value),
-                            Reason = (not Script.EntityTable.NotifyReason[child.Name].Spawned and "Go find a hiding place!" or nil),
+                            Reason = (not Script.EntityTable.NotifyReason[child.Name].Spawned and "去找一个藏身的地方!" or nil),
                             Image = Script.EntityTable.NotifyReason[child.Name].Image,
 
                             Warning = true
@@ -1248,9 +1211,9 @@ shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
             end)
         elseif Script.EntityTable.NotifyMessage[child.Name] and Options.NotifyEntity.Value[shortName] then
             shared.Notify:Alert({
-                Title = "ENTITIES",
+                Title = "实体",
                 Description = string.format("%s %s", shortName, Options.NotifyEntityMessage.Value),
-                Reason = (not Script.EntityTable.NotifyReason[child.Name].Spawned and "Go find a hiding place!" or nil),
+                Reason = (not Script.EntityTable.NotifyReason[child.Name].Spawned and "去找一个藏身的地方!" or nil),
                 Image = Script.EntityTable.NotifyReason[child.Name].Image,
 
                 Warning = true
@@ -1465,11 +1428,11 @@ shared.Connect:GiveSignal(shared.LocalPlayer.CharacterAdded:Connect(function(new
 
         if Toggles.FakeRevive.Value then
             shared.Notify:Alert({
-                Title = "Fake Revive",
-                Description = "You have revived, fake revive has stopped working.",
-                Reason = "Enable it again to start fake revive",
+                Title = "假恢复",
+                Description = "你复活了，假恢复已经停止了工作.",
+                Reason = "再次启用它以开始虚假复兴",
 
-                LinoriaMessage = "Fake Revive has stopped working, enable it again to start fake revive",
+                LinoriaMessage = "假恢复已停止工作，再次启用它来开始虚假的复兴",
             })
             Toggles.FakeRevive:SetValue(false)
         end
@@ -1574,11 +1537,11 @@ shared.Connect:GiveSignal(shared.LocalPlayer:GetAttributeChangedSignal("CurrentR
     if Script.IsMines and Script.Bypassed and currentRoomModel:GetAttribute("RawName") == "HaltHallway" then
         Script.Bypassed = false
         shared.Notify:Alert({
-            Title = "Anticheat Bypass",
-            Description = "Halt has broken anticheat bypass.",
-            Reason = "Please go on a ladder again to fix it.",
+            Title = "抗灰分地旁路",
+            Description = "停止破碎的抗灰分地旁路.",
+            Reason = "请再次继续梯子以修复它.",
 
-            LinoriaMessage = "Halt has broken anticheat bypass, please go on a ladder again to fix it.",
+            LinoriaMessage = "停止破碎的抗灰分地旁路，请再次走上梯子来修复它.",
         })
 
         Options.WalkSpeed:SetMax(Toggles.SpeedBypass.Value and 75 or (Toggles.EnableJump.Value and 18 or 22))
@@ -1877,9 +1840,9 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
                         local result = Anchor:FindFirstChildOfClass("RemoteFunction"):InvokeServer(CurrentGameState.AnchorCode)
                         if result then
                             shared.Notify:Alert({
-                                Title = "Auto Anchor Solver",
-                                Description = "Solved Anchor " .. CurrentAnchor .. " successfully!",
-                                Reason = "Solved anchor with the code " .. CurrentGameState.AnchorCode,
+                                Title = "自动锚索求解器",
+                                Description = "解决了锚 " .. CurrentAnchor .. " 成功地!",
+                                Reason = "用代码解决锚点 " .. CurrentGameState.AnchorCode,
                             })
                         end
                     end)
@@ -1889,7 +1852,7 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
             local HoldingItem = Script.Temp.HoldingItem
             if HoldingItem and not shared.isnetworkowner(HoldingItem) then
                 shared.Notify:Alert({
-                    Title = "Banana/Jeff Throw",
+                    Title = "香蕉/杰夫投掷",
                     Description = "由于网络所有者变更，您不再持有该物品！",
                 })
                 Script.Temp.HoldingItem = nil
@@ -2471,7 +2434,7 @@ function Script.Functions.UpdateBloxstrapRPC()
         details = "Playing " .. Script.GameName .. " [ mspaint v3 ]",
         state = #shared.Players:GetPlayers() .. " players in the server",
         largeImage = {
-            hoverText = "Using mspaint v3"
+            hoverText = "使用Mspaint v3 xgo汉化"
         },
         smallImage = {
             assetId = 6925817108,
@@ -2644,7 +2607,7 @@ local TrollingGroupBox = Tabs.Exploits:AddLeftGroupbox("Trolling") do
     })
 
     TrollingGroupBox:AddToggle("DeleteObject", {
-        Text = "FE Delete Object",
+        Text = "FE 删除对象",
         Default = false,
         Visible = wax.shared.ExecutorSupport["hookmetamethod"] and wax.shared.ExecutorSupport["getnamecallmethod"],
     })
@@ -2657,14 +2620,14 @@ local TrollingGroupBox = Tabs.Exploits:AddLeftGroupbox("Trolling") do
     TrollingGroupBox:AddDivider()
 
     TrollingGroupBox:AddToggle("DeleteAura", {
-        Text = "FE Delete Aura",
+        Text = "FE 删除光环",
         Default = false,
         Risky = true,
-        Tooltip = "Delete objects within a certain range of your character, this can kick you from the game and i'm too lazy to fix it."
+        Tooltip = "删除特定范围内的对象，这可以从游戏中踢你，我懒得修复它."
     })
 
     TrollingGroupBox:AddSlider("DeleteAuraRange", {
-        Text = "Delete Aura Range",
+        Text = "删除Aura范围",
         Default = 15,
         Min = 1,
         Max = 30,
@@ -2680,19 +2643,19 @@ local BypassGroupBox = Tabs.Exploits:AddRightGroupbox("Bypass") do
     })
 
     BypassGroupBox:AddToggle("InfiniteHunger", {
-        Text = "Disable Hunger",
+        Text = "禁止 Hunger",
         Default = false,
-        Tooltip = "You will never get hungry, incompatible with Godmode."
+        Tooltip = "你永远不会饿，与神道德不相容."
     })
 
     BypassGroupBox:AddToggle("InfiniteEnergy", {
-        Text = "Infinite Energy",
+        Text = "无限的能量",
         Default = false,
-        Tooltip = "You will never get tired, incompatible with Godmode."
+        Tooltip = "你永远不会累，与神道德."
     })
 
     BypassGroupBox:AddToggle("InfiniteInventory", {
-        Text = "Infinite Inventory",
+        Text = "无限库存",
         Default = false,
         Visible = wax.shared.ExecutorSupport["require"] and wax.shared.ExecutorSupport["hookmetamethod"] and wax.shared.ExecutorSupport["getnamecallmethod"],
     })
@@ -2798,12 +2761,12 @@ Script.LastSpeed = if shared.Humanoid then shared.Humanoid.WalkSpeed else 16
 --// Main \\--
 local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Player") do
     PlayerGroupBox:AddToggle("SpeedHack", {
-        Text = "Speed Hack",
+        Text = "黑客速度",
         Default = false
     })
 
     PlayerGroupBox:AddSlider("WalkSpeed", {
-        Text = "Walk Speed",
+        Text = "步行速度",
         Default = 16,
         Min = 0,
         Max = 100,
@@ -2812,12 +2775,12 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Player") do
     })
 
     PlayerGroupBox:AddToggle("JumpPowerHack", {
-        Text = "Jump Power Hack",
+        Text = "黑客跳跃力量",
         Default = false
     })
 
     PlayerGroupBox:AddSlider("JumpPower", {
-        Text = "Jump Power",
+        Text = "跳跃力量",
         Default = 50,
         Min = 0,
         Max = 200,
@@ -2828,20 +2791,20 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Player") do
     PlayerGroupBox:AddDivider()
 
     PlayerGroupBox:AddToggle("InstantInteract", {
-        Text = "Instant Interact",
+        Text = "即时互动",
         Default = false,
         Visible = wax.shared.ExecutorSupport["hookfunction"] and wax.shared.ExecutorSupport["getcallingscript"]
     })
 
     PlayerGroupBox:AddToggle("NoFall", {
-        Text = "No Fall",
+        Text = "没有秋天",
         Default = false
     })
 
     PlayerGroupBox:AddDivider()
 
     PlayerGroupBox:AddToggle("Noclip", {
-        Text = "Noclip",
+        Text = "没有剪辑",
         Default = false
     }):AddKeyPicker("NoclipKey", {
         Mode = "Toggle",
@@ -2851,7 +2814,7 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Player") do
     })
 
     PlayerGroupBox:AddToggle("Fly", {
-        Text = "Fly",
+        Text = "飞行",
         Default = false
     }):AddKeyPicker("FlyKey", {
         Mode = "Toggle",
@@ -2861,7 +2824,7 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Player") do
     })
     
     PlayerGroupBox:AddSlider("FlySpeed", {
-        Text = "Fly Speed",
+        Text = "飞行速度",
         Default = 16,
         Min = 0,
         Max = 100,
@@ -2872,32 +2835,32 @@ end
 
 local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Automation") do
     AutomationGroupBox:AddToggle("AutoRespawn", {
-        Text = "Auto Respawn",
+        Text = "自动重生",
         Default = false
     })
 
     AutomationGroupBox:AddToggle("AutoPush", {
-        Text = "Auto Push Employees",
+        Text = "自动推送员工",
         Default = false
     })
 
     AutomationGroupBox:AddDivider()
 
     AutomationGroupBox:AddToggle("AutoTPWhistle", {
-        Text = "Enable player whistle teleport",
+        Text = "使播放器口哨传送",
         Default = false
     })
 
     AutomationGroupBox:AddDropdown("AutoTPWhistlePlayers", {
         SpecialType = "Player",
         Multi = true,
-        Text = "Go to player(s)'s whistle."
+        Text = "去玩家的哨子."
     })
 end
 
 local MiscGroupBox = Tabs.Main:AddRightGroupbox("Misc") do
     MiscGroupBox:AddButton({
-        Text = "Respawn",
+        Text = "重生",
         Func = function()
             Script.Functions.Respawn()
         end,
@@ -2905,7 +2868,7 @@ local MiscGroupBox = Tabs.Main:AddRightGroupbox("Misc") do
     })
 
     MiscGroupBox:AddButton({
-        Text = "Rejoin",
+        Text = "归队",
         Func = function()
             if #shared.Players:GetPlayers() <= 1 then
                 shared.TeleportService:Teleport(game.PlaceId, shared.LocalPlayer)
@@ -2918,10 +2881,10 @@ local MiscGroupBox = Tabs.Main:AddRightGroupbox("Misc") do
     })
 
     MiscGroupBox:AddButton({
-        Text = "Instant Leave",
+        Text = "即时离开",
         Func = function()
             task.delay(0.1, function() game:Shutdown() end)
-            shared.LocalPlayer:Kick("Bye bye! :Content:")
+            shared.LocalPlayer:Kick("再见！ ：内容:")
         end,
         DoubleClick = true
     })
